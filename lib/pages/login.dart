@@ -1,8 +1,9 @@
-import 'package:eva_app/pages/register.dart';
-import 'package:eva_app/utilities/actions.dart';
 import 'package:flutter/material.dart';
-import 'package:eva_app/utilities/widgets.dart';
 import 'package:eva_app/pages/home.dart';
+import 'package:eva_app/pages/settings.dart';
+import 'package:eva_app/pages/register.dart';
+import 'package:eva_app/utilities/app_widgets.dart';
+import 'package:eva_app/utilities/app_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,6 +13,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  EvaPreferences evaPref = EvaPreferences();
   @override
   Widget build(BuildContext context)
   {
@@ -30,18 +32,29 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:
                 [
-                  widget_main_title( "EVA APP", 50 )
+                  widgetMainTitle("EVA APP", 50)
                 ],
               ),
-              widget_inputField( "Username", username, true ),
-              widget_inputField( "Password", password, true ),
+              Row(
+                 mainAxisAlignment: MainAxisAlignment.center,
+                 children: [
+                  widgetInputField("Username", evaPref.getServerUsername(), true),
+                ],
+              ),
+              Row(
+                 mainAxisAlignment: MainAxisAlignment.center,
+                 children: [
+                  widgetInputField("Password", evaPref.getServerPassword(), true),
+                ],
+              ),
               Row
               (
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:
                 [
-                  widget_iconbutton( Icons.login, "Login", navigate_to(context, HomePage())) ,
-                  //widget_iconbutton( Icons.app_registration_rounded, "Register", navigate_to(context, Register()) ),
+                  widgetIconButton(Icons.login, "Login", context, const HomePage()) ,
+                  widgetIconButton(Icons.app_registration_rounded, "Register", context, const Register()),
+                  widgetIconButton(Icons.settings, "Settings", context, const SettingsPage())
                 ],
               )
             ]

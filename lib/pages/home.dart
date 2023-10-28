@@ -1,7 +1,5 @@
-import 'package:eva_app/pages/login.dart';
-import 'package:eva_app/utilities/actions.dart';
 import 'package:flutter/material.dart';
-import 'package:eva_app/utilities/widgets.dart';
+import 'package:eva_app/utilities/app_widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,9 +18,27 @@ class _HomePageState extends State<HomePage>
       body:
         Center
         (
-          child: widget_iconbutton
-          ( Icons.logout, "Logout", navigate_back(context) )
-        ) 
+          child:
+          Column
+          (
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children:
+            [
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(" EVA HOME PAGE "),
+                  ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                widgetIconButton( Icons.logout, "Logout", context)
+                ]
+              )
+            ]
+          )
+        )
     );
   }
 }

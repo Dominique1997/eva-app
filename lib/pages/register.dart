@@ -1,7 +1,5 @@
-import 'package:eva_app/pages/login.dart';
-import 'package:eva_app/utilities/actions.dart';
 import 'package:flutter/material.dart';
-import 'package:eva_app/utilities/widgets.dart';
+import 'package:eva_app/utilities/app_widgets.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -21,8 +19,25 @@ class _RegisterState extends State<Register>
         Center
         (
           child:
-          widget_iconbutton
-          ( Icons.logout, "Logout", navigate_back(context))
+          Column
+          (
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children:
+            [
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(" EVA REGISTER PAGE"),
+                  ],
+                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  widgetIconButton( Icons.logout, "Logout", context)
+                ],
+              )
+            ]
+          )
         )
     );
   }
