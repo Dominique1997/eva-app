@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:eva_app/utilities/app_widgets.dart';
-import 'package:eva_app/utilities/app_actions.dart';
 import 'package:eva_app/utilities/app_preferences.dart';
 
 
@@ -14,7 +13,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
 {
   final EvaPreferences _evaPreference = EvaPreferences();
-  final EvaActions _evaAction = EvaActions();  @override
+  final EvaWidgets _evaWidget = EvaWidgets();
+  @override
   Widget build(BuildContext context)
   {
     _evaPreference.loadSettings();
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage>
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                widgetIconButton( Icons.logout, "Logout", _evaAction.navigateTo(context))
+                _evaWidget.widgetNavigationIconButton( Icons.logout, "Logout", context)
                 ]
               )
             ]

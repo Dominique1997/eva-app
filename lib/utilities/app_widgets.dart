@@ -1,46 +1,71 @@
 import 'package:flutter/material.dart';
 import 'package:eva_app/utilities/app_actions.dart';
 
-final EvaActions _evaNav = EvaActions();
+class EvaWidgets
+{
 
-Widget widgetIcon(IconData icon){
-  return Icon(icon);
-}
+  final EvaActions _evaAction = EvaActions();
 
-Widget widgetInputField(String shownHinttext, TextEditingController defaultText, bool defaultEnabled){
-  return SizedBox(
-    width: 500,
-    child:
-    TextField
+  Icon widgetIcon(IconData icon)
+  {
+    return Icon(icon);
+  }
+
+
+  SizedBox widgetInputField(String shownHinttext, TextEditingController defaultText, bool defaultEnabled)
+  {
+    return SizedBox
     (
-      controller: defaultText,
-      decoration: InputDecoration(
-        enabled: defaultEnabled,
-        border: const OutlineInputBorder(),
-        hintText: shownHinttext,
-      ),
-    )
-  );
-}
-
-Widget widgetIconButton(IconData icon, String buttonText, action){
-  return IconButton(
-    icon: widgetIcon(icon),
-    tooltip: buttonText,
-    color: Colors.black,    
-    onPressed: () => action
-  );
-}
-
-Widget widgetMainTitle(String mainTitle, double sizeOfText){
-    return Text(
-      mainTitle,
-      style: TextStyle(fontSize: sizeOfText));
-}
-
-Widget widgetTextButton(String buttonText, action){
-  return TextButton(
-    onPressed: () => action,
-    child: Text(buttonText)
+      width: 500,
+      child:
+      TextField
+      (
+        controller: defaultText,
+        decoration: InputDecoration
+        (
+          enabled: defaultEnabled,
+          border: const OutlineInputBorder(),
+          hintText: shownHinttext,
+        ),
+      )
     );
+  }
+
+  Text widgetMainTitle(String mainTitle, double sizeOfText)
+  {
+      return Text
+      (
+        mainTitle,
+        style: TextStyle(fontSize: sizeOfText)
+      );
+  }
+
+  TextButton widgetNavigationTextButton(String buttonText, context, [navigateToPage])
+  {
+    return TextButton
+    (
+      onPressed: () => _evaAction.navigateTo(context, navigateToPage),
+      child: Text(buttonText)
+    );
+  }
+
+  IconButton widgetNavigationIconButton(IconData icon, String buttonText, context, [navigateToPage])
+  {
+    return IconButton
+    (
+      icon: widgetIcon(icon),
+      tooltip: buttonText,
+      color: Colors.black,
+      onPressed: () => _evaAction.navigateTo(context, navigateToPage)
+    ); 
+  }
+
+  TextButton widgetSaveSettingsTextButton(String buttonText, context, navigateToPage)
+  {
+   return TextButton
+   (
+      onPressed: () => _evaAction.navigateTo(context, navigateToPage),
+      child: Text(buttonText)
+    );
+  }
 }

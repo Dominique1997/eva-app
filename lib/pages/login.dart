@@ -1,4 +1,3 @@
-import 'package:eva_app/utilities/app_actions.dart';
 import 'package:flutter/material.dart';
 import 'package:eva_app/pages/home.dart';
 import 'package:eva_app/pages/settings.dart';
@@ -15,7 +14,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final EvaPreferences _evaPreference = EvaPreferences();
-  final EvaActions _evaAction = EvaActions();
+  final EvaWidgets _evaWidget = EvaWidgets();
   @override
   Widget build(BuildContext context)
   {
@@ -34,19 +33,19 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:
                 [
-                  widgetMainTitle("EVA APP", 50)
+                  _evaWidget.widgetMainTitle("EVA APP", 50)
                 ],
               ),
               Row(
                  mainAxisAlignment: MainAxisAlignment.center,
                  children: [
-                  widgetInputField("Username", _evaPreference.getServerUsername(), true,),
+                  _evaWidget.widgetInputField("Username", _evaPreference.getServerUsername(), true,),
                 ],
               ),
               Row(
                  mainAxisAlignment: MainAxisAlignment.center,
                  children: [
-                  widgetInputField("Password", _evaPreference.getServerPassword(), true, ),
+                  _evaWidget.widgetInputField("Password", _evaPreference.getServerPassword(), true, ),
                 ],
               ),
               Row
@@ -54,9 +53,9 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:
                 [
-                  widgetIconButton(Icons.login, "Login", _evaAction.navigateTo(context, const HomePage())) ,
-                  widgetIconButton(Icons.app_registration_rounded, "Register",  _evaAction.navigateTo(context, const RegisterPage())),
-                  widgetIconButton(Icons.settings, "Settings", _evaAction.navigateTo(context, const SettingsPage()))
+                  _evaWidget.widgetNavigationIconButton(Icons.login, "Login", context, const HomePage()) ,
+                  _evaWidget.widgetNavigationIconButton(Icons.app_registration_rounded, "Register",  context, const RegisterPage()),
+                  _evaWidget.widgetNavigationIconButton(Icons.settings, "Settings", context, const SettingsPage())
                 ],
               )
             ]
