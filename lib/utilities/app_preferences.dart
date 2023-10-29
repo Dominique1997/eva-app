@@ -2,51 +2,51 @@ import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-class EvaPreferences{
+class EvaPreferences {
   final _serverIp = TextEditingController(text: "127.0.0.1");
   final _serverPort = TextEditingController(text: "1234");
   final _username = TextEditingController();
   final _password = TextEditingController();
 
-  getServerIp(){
+  getServerIp() {
     return _serverIp;
   }
 
-  getServerPort(){
+  getServerPort() {
     return _serverPort;
   }
 
-  TextEditingController getServerUsername(){
+  TextEditingController getServerUsername() {
     return _username;
   }
 
-  TextEditingController getServerPassword(){
+  TextEditingController getServerPassword() {
     return _password;
   }
 
-  setServerIp(serverIp) async{
+  setServerIp(serverIp) async {
     final SharedPreferences sharedPref = await SharedPreferences.getInstance();
     sharedPref.setString("server_ip", serverIp);
     _serverIp.text = serverIp;
   }
 
-  setServerPort(serverPort) async{
+  setServerPort(serverPort) async {
     final SharedPreferences sharedPref = await SharedPreferences.getInstance();
     sharedPref.setString("server_port", serverPort);
     _serverPort.text = serverPort;
   }
 
-  setServerUsername(username){
+  setServerUsername(username) {
     _username.text = username;
   }
 
-  setServerPassword(password){
+  setServerPassword(password) {
     _password.text = password;
   }
 
-  Future loadSettings() async{
+  Future loadSettings() async {
     final SharedPreferences sharedPref = await SharedPreferences.getInstance();
-    if(sharedPref.getString("serverIp") != null){
+    if (sharedPref.getString("serverIp") != null) {
       setServerIp(sharedPref.getString("serverIp"));
     }
   }

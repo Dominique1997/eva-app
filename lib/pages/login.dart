@@ -16,51 +16,50 @@ class _LoginPageState extends State<LoginPage> {
   final EvaPreferences _evaPreference = EvaPreferences();
   final EvaWidgets _evaWidget = EvaWidgets();
   @override
-  Widget build(BuildContext context)
-  {
-    return Scaffold
-    (
-      body: 
-        Center
-        (
-          child:
-          Column
-          (
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children:
-            [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children:
-                [
-                  _evaWidget.widgetMainTitle("EVA APP", 50)
-                ],
-              ),
-              Row(
-                 mainAxisAlignment: MainAxisAlignment.center,
-                 children: [
-                  _evaWidget.widgetInputField("Username", _evaPreference.getServerUsername(), true,),
-                ],
-              ),
-              Row(
-                 mainAxisAlignment: MainAxisAlignment.center,
-                 children: [
-                  _evaWidget.widgetInputField("Password", _evaPreference.getServerPassword(), true, ),
-                ],
-              ),
-              Row
-              (
-                mainAxisAlignment: MainAxisAlignment.center,
-                children:
-                [
-                  _evaWidget.widgetNavigationIconButton(Icons.login, "Login", context, const HomePage()) ,
-                  _evaWidget.widgetNavigationIconButton(Icons.app_registration_rounded, "Register",  context, const RegisterPage()),
-                  _evaWidget.widgetNavigationIconButton(Icons.settings, "Settings", context, const SettingsPage())
-                ],
-              )
-            ]
-          ),
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Center(
+      child:
+          Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [_evaWidget.widgetMainTitle("EVA APP", 50)],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _evaWidget.widgetInputField(
+              "Username",
+              _evaPreference.getServerUsername(),
+              true,
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _evaWidget.widgetInputField(
+              "Password",
+              _evaPreference.getServerPassword(),
+              true,
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _evaWidget.widgetNavigationIconButton(
+                Icons.login, "Login", context, const HomePage()),
+            _evaWidget.widgetNavigationIconButton(
+                Icons.app_registration_rounded,
+                "Register",
+                context,
+                const RegisterPage()),
+            _evaWidget.widgetNavigationIconButton(
+                Icons.settings, "Settings", context, const SettingsPage())
+          ],
         )
-    );
+      ]),
+    ));
   }
 }

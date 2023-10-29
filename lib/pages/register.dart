@@ -8,38 +8,28 @@ class RegisterPage extends StatefulWidget {
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage>
-{
+class _RegisterPageState extends State<RegisterPage> {
   final EvaWidgets _evaWidget = EvaWidgets();
   @override
-  Widget build(BuildContext context)
-  {
-    return Scaffold
-    (
-      body:
-        Center
-        (
-          child:
-          Column
-          (
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children:
-            [
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(" EVA REGISTER PAGE"),
-                  ],
-                ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _evaWidget.widgetNavigationIconButton( Icons.logout, "Logout", context)
-                ],
-              )
-            ]
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(" EVA REGISTER PAGE"),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _evaWidget.widgetNavigationIconButton(
+                  Icons.logout, "Logout", context)
+            ],
           )
-        )
-    );
+        ])));
   }
 }
