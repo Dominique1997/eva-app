@@ -1,3 +1,4 @@
+import 'package:eva_app/utilities/app_actions.dart';
 import 'package:flutter/material.dart';
 import 'package:eva_app/pages/home.dart';
 import 'package:eva_app/pages/settings.dart';
@@ -13,7 +14,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  EvaPreferences evaPref = EvaPreferences();
+  final EvaPreferences _evaPreference = EvaPreferences();
+  final EvaActions _evaAction = EvaActions();
   @override
   Widget build(BuildContext context)
   {
@@ -38,13 +40,13 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                  mainAxisAlignment: MainAxisAlignment.center,
                  children: [
-                  widgetInputField("Username", evaPref.getServerUsername(), true),
+                  widgetInputField("Username", _evaPreference.getServerUsername(), true,),
                 ],
               ),
               Row(
                  mainAxisAlignment: MainAxisAlignment.center,
                  children: [
-                  widgetInputField("Password", evaPref.getServerPassword(), true),
+                  widgetInputField("Password", _evaPreference.getServerPassword(), true, ),
                 ],
               ),
               Row
@@ -52,9 +54,9 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:
                 [
-                  widgetIconButton(Icons.login, "Login", context, const HomePage()) ,
-                  widgetIconButton(Icons.app_registration_rounded, "Register", context, const Register()),
-                  widgetIconButton(Icons.settings, "Settings", context, const SettingsPage())
+                  widgetIconButton(Icons.login, "Login", _evaAction.navigateTo(context, const HomePage())) ,
+                  widgetIconButton(Icons.app_registration_rounded, "Register",  _evaAction.navigateTo(context, const RegisterPage())),
+                  widgetIconButton(Icons.settings, "Settings", _evaAction.navigateTo(context, const SettingsPage()))
                 ],
               )
             ]

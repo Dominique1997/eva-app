@@ -1,3 +1,4 @@
+import 'package:eva_app/utilities/app_actions.dart';
 import 'package:flutter/material.dart';
 import 'package:eva_app/utilities/app_widgets.dart';
 import 'package:eva_app/utilities/app_preferences.dart';
@@ -10,13 +11,10 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  EvaPreferences evaPref = EvaPreferences();
+  final EvaPreferences _evaPreference = EvaPreferences();
+  final EvaActions _evaAction = EvaActions();
   @override
   Widget build(BuildContext context){
-    TextEditingController server_ip = evaPref.getServerIp();
-    //TextEditingController server_port = await evaPref.getServerPort();
-    //TextEditingController server_ip = TextEditingController(text: "127.0.0.1");
-    TextEditingController server_port = TextEditingController(text: "1234");
     return Scaffold(
       body:
         Center(
@@ -33,21 +31,21 @@ class _SettingsPageState extends State<SettingsPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    widgetInputField("server url", server_ip, true),
+                    widgetInputField("server url", _evaPreference.getServerIp(), true),
                   ]
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    widgetInputField("server port", server_port, true),
+                    widgetInputField("server port", _evaPreference.getServerPort(), true),
                   ]
                   ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    widgetTextButton("Save settings", "Settings saved"),
-                    widgetTextButton("Reset settings", "Resetting the settings"),
-                    widgetTextButton("Cancel", "Settings are cancelled")
+                    widgetTextButton("Save settings", _evaAction.navigateTo(context)),
+                    widgetTextButton("Reset settings", _evaAction.navigateTo(context)),
+                    widgetTextButton("Cancel", _evaAction.navigateTo(context))
                   ],
                 )
               ],

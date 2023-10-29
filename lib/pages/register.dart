@@ -1,15 +1,17 @@
+import 'package:eva_app/utilities/app_actions.dart';
 import 'package:flutter/material.dart';
 import 'package:eva_app/utilities/app_widgets.dart';
 
-class Register extends StatefulWidget {
-  const Register({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<Register> createState() => _RegisterState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegisterState extends State<Register>
+class _RegisterPageState extends State<RegisterPage>
 {
+  final EvaActions _evaAction = EvaActions();
   @override
   Widget build(BuildContext context)
   {
@@ -33,7 +35,7 @@ class _RegisterState extends State<Register>
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  widgetIconButton( Icons.logout, "Logout", context)
+                  widgetIconButton( Icons.logout, "Logout", _evaAction.navigateTo(context))
                 ],
               )
             ]
