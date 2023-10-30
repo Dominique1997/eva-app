@@ -9,7 +9,7 @@ class EvaWidgets {
   }
 
   SizedBox widgetInputField(String shownHinttext,
-      TextEditingController defaultText, bool defaultEnabled) {
+      TextEditingController defaultText, bool defaultEnabled, String value_type) {
     return SizedBox(
         width: 500,
         child: TextField(
@@ -19,6 +19,10 @@ class EvaWidgets {
             border: const OutlineInputBorder(),
             hintText: shownHinttext,
           ),
+          onChanged: (value) =>
+          {
+            _evaAction.saveNewValue(value, value_type)
+          }
         ));
   }
 

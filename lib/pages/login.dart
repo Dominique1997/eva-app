@@ -28,21 +28,15 @@ class _LoginPageState extends State<LoginPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _evaWidget.widgetInputField(
-              "Username",
-              _evaPreference.getServerUsername(),
-              true,
-            ),
+            _evaWidget.widgetInputField("Username",
+                _evaPreference.getServerUsername(), true, "username"),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _evaWidget.widgetInputField(
-              "Password",
-              _evaPreference.getServerPassword(),
-              true,
-            ),
+            _evaWidget.widgetInputField("Password",
+                _evaPreference.getServerPassword(), true, "password"),
           ],
         ),
         Row(
@@ -58,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
             _evaWidget.widgetNavigationIconButton(
                 Icons.settings, "Settings", context, const SettingsPage())
           ],
-        )
+        ),
       ]),
     ));
   }

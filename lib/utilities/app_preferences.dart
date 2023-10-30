@@ -36,11 +36,16 @@ class EvaPreferences {
     _serverPort.text = serverPort;
   }
 
-  setServerUsername(username) {
+  setServerUsername(username) async {
+    final SharedPreferences sharedPref = await SharedPreferences.getInstance();
+    sharedPref.setString("server_username", username);
     _username.text = username;
+
   }
 
-  setServerPassword(password) {
+  setServerPassword(password) async {
+    final SharedPreferences sharedPref = await SharedPreferences.getInstance();
+    sharedPref.setString("server_password", password);
     _password.text = password;
   }
 

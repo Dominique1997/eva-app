@@ -27,11 +27,11 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               _evaWidget.widgetInputField(
-                  "server url", _evaPreference.getServerIp(), true),
+                  "server url", _evaPreference.getServerIp(), true, "server_ip"),
             ]),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               _evaWidget.widgetInputField(
-                  "server port", _evaPreference.getServerPort(), true),
+                  "server port", _evaPreference.getServerPort(), true, "server_port"),
             ]),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
