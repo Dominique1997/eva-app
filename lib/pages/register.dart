@@ -10,6 +10,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final EvaWidgets _evaWidget = EvaWidgets();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,8 +27,7 @@ class _RegisterPageState extends State<RegisterPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _evaWidget.widgetNavigationIconButton(
-                  Icons.logout, "Logout", context)
+              _evaWidget.widgetNavigationIconButton(Icons.logout, "Logout", context)
             ],
           )
         ])));

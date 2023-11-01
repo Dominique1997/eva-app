@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:eva_app/utilities/app_preferences.dart';
+import 'package:flutter/material.dart';
 
 class EvaActions {
   final EvaPreferences _evaPreference = EvaPreferences();
 
-  navigateTo(context, [routingPage]) {
+  void navigateTo(context, [routingPage]) {
     {
       if (routingPage != null) {
         Navigator.push(
@@ -15,18 +15,13 @@ class EvaActions {
     }
   }
 
-  saveNewValue(String text, String valuetype){
-    if(valuetype == "username"){
-      _evaPreference.setServerUsername(text);
-    }
-    else if(valuetype == "password"){
-      _evaPreference.setServerPassword(text);
-    }
-    else if(valuetype == "server_ip"){
-      _evaPreference.setServerIp(text);
-    }
-    else if(valuetype == "server_port"){
-      _evaPreference.setServerPort(text);
+
+  saveNewValue(String inputFieldHintText, String newValue){
+    String hintText = "server_${inputFieldHintText.toLowerCase()}";
+    if(hintText == "server_url"){
+      _evaPreference.setServerUrl(newValue);
+    } else if(hintText == "server_port"){
+      _evaPreference.setServerPort(newValue);
     }
   }
 }

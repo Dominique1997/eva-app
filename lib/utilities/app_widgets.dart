@@ -9,20 +9,18 @@ class EvaWidgets {
   }
 
   SizedBox widgetInputField(String shownHinttext,
-      TextEditingController defaultText, bool defaultEnabled, String value_type) {
+      TextEditingController textEditingController, bool defaultEnabled, bool hideText) {
     return SizedBox(
         width: 500,
         child: TextField(
-          controller: defaultText,
+          controller: textEditingController,
           decoration: InputDecoration(
             enabled: defaultEnabled,
             border: const OutlineInputBorder(),
             hintText: shownHinttext,
           ),
-          onChanged: (value) =>
-          {
-            _evaAction.saveNewValue(value, value_type)
-          }
+          onChanged: (text) {_evaAction.saveNewValue(shownHinttext, text);},
+          obscureText: hideText
         ));
   }
 

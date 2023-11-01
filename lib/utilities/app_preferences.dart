@@ -1,58 +1,58 @@
 import 'package:flutter/material.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class EvaPreferences {
-  final _serverIp = TextEditingController(text: "127.0.0.1");
-  final _serverPort = TextEditingController(text: "1234");
-  final _username = TextEditingController();
-  final _password = TextEditingController();
+  final TextEditingController _server_username = TextEditingController();
+  final TextEditingController _server_password = TextEditingController();
+  final TextEditingController _server_url = TextEditingController();
+  final TextEditingController _server_port = TextEditingController();
 
-  getServerIp() {
-    return _serverIp;
-  }
 
-  getServerPort() {
-    return _serverPort;
-  }
-
-  TextEditingController getServerUsername() {
-    return _username;
-  }
-
-  TextEditingController getServerPassword() {
-    return _password;
-  }
-
-  setServerIp(serverIp) async {
+  void setServerUrl(serverUrl) async {
+    _server_url.text = serverUrl;
     final SharedPreferences sharedPref = await SharedPreferences.getInstance();
-    sharedPref.setString("server_ip", serverIp);
-    _serverIp.text = serverIp;
+    sharedPref.setString("server_url", serverUrl);
   }
 
-  setServerPort(serverPort) async {
+  void setServerPort(serverPort) async {
+    _server_port.text = serverPort;
     final SharedPreferences sharedPref = await SharedPreferences.getInstance();
     sharedPref.setString("server_port", serverPort);
-    _serverPort.text = serverPort;
   }
 
-  setServerUsername(username) async {
+  void setServerUsername(username) async {
+    _server_username.text = username;
     final SharedPreferences sharedPref = await SharedPreferences.getInstance();
     sharedPref.setString("server_username", username);
-    _username.text = username;
-
   }
 
-  setServerPassword(password) async {
+  void setServerPassword(password) async {
+    _server_password.text = password;
     final SharedPreferences sharedPref = await SharedPreferences.getInstance();
     sharedPref.setString("server_password", password);
-    _password.text = password;
   }
 
-  Future loadSettings() async {
+  TextEditingController getServerUrl(){
+    return _server_url;
+  }
+
+  TextEditingController getServerPort(){
+    return _server_port;
+  }
+
+  TextEditingController getServerUsername(){
+    return _server_username;
+  }
+
+  TextEditingController getServerPassword(){
+    return _server_password;
+  }
+
+  void loadSettings() async{
     final SharedPreferences sharedPref = await SharedPreferences.getInstance();
-    if (sharedPref.getString("serverIp") != null) {
-      setServerIp(sharedPref.getString("serverIp"));
-    }
+    _server_url.text = sharedPref.getString("server_url") ?? "localhost";
+    _server_port.text = sharedPref.getString("server_port")?? "1234";
+    _server_username.text = sharedPref.getString("server_username") ?? "";
+    _server_password.text = sharedPref.getString("server_password") ?? "";
   }
 }

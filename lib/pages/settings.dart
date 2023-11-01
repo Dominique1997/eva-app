@@ -12,6 +12,13 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   final EvaPreferences _evaPreference = EvaPreferences();
   final EvaWidgets _evaWidget = EvaWidgets();
+
+   @override
+  void initState(){
+    super.initState();
+    _evaPreference.loadSettings();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,19 +33,15 @@ class _SettingsPageState extends State<SettingsPage> {
               ],
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              _evaWidget.widgetInputField(
-                  "server url", _evaPreference.getServerIp(), true, "server_ip"),
+              _evaWidget.widgetInputField("url", _evaPreference.getServerUrl(), true, false),
             ]),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              _evaWidget.widgetInputField(
-                  "server port", _evaPreference.getServerPort(), true, "server_port"),
+              _evaWidget.widgetInputField("port", _evaPreference.getServerPort() , true, false),
             ]),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _evaWidget.widgetNavigationTextButton("Save settings", context),
-                _evaWidget.widgetNavigationTextButton(
-                    "Reset settings", context),
+                _evaWidget.widgetNavigationTextButton("Reset settings", context),
                 _evaWidget.widgetNavigationTextButton("Cancel", context)
               ],
             )

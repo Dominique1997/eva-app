@@ -15,8 +15,15 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final EvaPreferences _evaPreference = EvaPreferences();
   final EvaWidgets _evaWidget = EvaWidgets();
+
   @override
-  Widget build(BuildContext context) {
+  void initState(){
+    super.initState();
+    _evaPreference.loadSettings();
+  }
+
+  @override
+  Widget build(BuildContext context)  {
     return Scaffold(
         body: Center(
       child:
@@ -28,15 +35,14 @@ class _LoginPageState extends State<LoginPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _evaWidget.widgetInputField("Username",
-                _evaPreference.getServerUsername(), true, "username"),
+            _evaWidget.widgetInputField("Username", _evaPreference.getServerUsername(), true, false),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _evaWidget.widgetInputField("Password",
-                _evaPreference.getServerPassword(), true, "password"),
+               _evaPreference.getServerPassword(), true, true),
           ],
         ),
         Row(
