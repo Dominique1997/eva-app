@@ -30,11 +30,11 @@ class EvaLoginPageWidgets extends EvaBaseWidgets {
     return super.widgetMainTitle("EVA APP", 50);
   }
 
-  SizedBox serverUsernameInputField() {
+  Widget serverUsernameInputField() {
     return super.widgetInputField("Username", true, false);
   }
 
-  SizedBox serverPasswordInputField() {
+  Widget serverPasswordInputField() {
     return super.widgetInputField("Password", true, true);
   }
 }
@@ -54,11 +54,11 @@ class EvaSettingsPageWidgets extends EvaBaseWidgets {
     return super.widgetMainTitle("EVA SETTINGS", 50);
   }
 
-  SizedBox serverURLInputField() {
+  FutureBuilder<String?> serverURLInputField() {
     return super.widgetInputField("url", true, false);
   }
 
-  SizedBox serverPortInputField() {
+  FutureBuilder<String?> serverPortInputField() {
     return super.widgetInputField("port", true, false);
   }
 
@@ -103,12 +103,34 @@ class EvaBaseWidgets {
         child: Text(buttonText));
   }
 
-  SizedBox widgetInputField(
-      String shownHinttext, bool defaultEnabled, bool hideText) {
+  FutureBuilder<String?> widgetInputField(String shownHinttext, bool defaultEnabled, bool hideText){
+    return FutureBuilder(
+      future: _evaAction.getValue(shownHinttext),
+      builder: (context, snapshot){
+        return SizedBox(
+          width: 500,
+          child: TextField(
+            controller: TextEditingController(text: snapshot.data),
+            decoration: InputDecoration(
+              enabled: defaultEnabled,
+              border: const OutlineInputBorder(),
+              hintText: shownHinttext,
+              ),
+            onChanged: (text) {
+              _evaAction.saveNewValue(shownHinttext, text);
+            },
+            obscureText: hideText));
+        }
+    );      
+  }
+
+  Future<SizedBox> widgetInputFieldOriginal(
+    String shownHinttext, bool defaultEnabled, bool hideText) async {
+    String? controllerText = await _evaAction.getValue(shownHinttext);
     return SizedBox(
         width: 500,
         child: TextField(
-          controller: TextEditingController(text: _evaAction.getValue(shownHinttext)) ,
+          controller: TextEditingController(text: controllerText),
           decoration: InputDecoration(
             enabled: defaultEnabled,
             border: const OutlineInputBorder(),

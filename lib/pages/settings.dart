@@ -11,7 +11,6 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   final EvaSettingsPageWidgets _evaSettingsPageWidget =
       EvaSettingsPageWidgets();
-  
 
   @override
   Widget build(BuildContext context) {
