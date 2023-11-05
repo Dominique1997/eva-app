@@ -9,7 +9,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final EvaWidgets _evaWidget = EvaWidgets();
+  final EvaHomePageWidgets _evaHomePageWidget = EvaHomePageWidgets();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,16 +17,15 @@ class _HomePageState extends State<HomePage> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(" EVA HOME PAGE "),
+              _evaHomePageWidget.pageTitleText(),
             ],
           ),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            _evaWidget.widgetNavigationIconButton(
-                Icons.logout, "Logout", context)
-          ])
+          Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [_evaHomePageWidget.logoutTextButton(context)])
         ])));
   }
 }

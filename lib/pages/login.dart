@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:eva_app/pages/home.dart';
-import 'package:eva_app/pages/settings.dart';
-import 'package:eva_app/pages/register.dart';
 import 'package:eva_app/utilities/app_widgets.dart';
-import 'package:eva_app/utilities/app_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -13,50 +9,34 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final EvaPreferences _evaPreference = EvaPreferences();
-  final EvaWidgets _evaWidget = EvaWidgets();
+  final EvaLoginPageWidgets _evaLoginPageWidget = EvaLoginPageWidgets();
 
   @override
-  void initState(){
-    super.initState();
-    _evaPreference.loadSettings();
-  }
-
-  @override
-  Widget build(BuildContext context)  {
+  Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [_evaWidget.widgetMainTitle("EVA APP", 50)],
+          children: [_evaLoginPageWidget.pageTitleText()],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _evaWidget.widgetInputField("Username", _evaPreference.getServerUsername(), true, false),
+            _evaLoginPageWidget.serverUsernameInputField(),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _evaWidget.widgetInputField("Password",
-               _evaPreference.getServerPassword(), true, true),
-          ],
+          children: [_evaLoginPageWidget.serverPasswordInputField()],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _evaWidget.widgetNavigationIconButton(
-                Icons.login, "Login", context, const HomePage()),
-            _evaWidget.widgetNavigationIconButton(
-                Icons.app_registration_rounded,
-                "Register",
-                context,
-                const RegisterPage()),
-            _evaWidget.widgetNavigationIconButton(
-                Icons.settings, "Settings", context, const SettingsPage())
+            _evaLoginPageWidget.loginIconButton(),
+            _evaLoginPageWidget.registerIconButton(context),
+            _evaLoginPageWidget.settingsIconButton(context)
           ],
         ),
       ]),

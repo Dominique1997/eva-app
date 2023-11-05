@@ -9,7 +9,8 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final EvaWidgets _evaWidget = EvaWidgets();
+  final EvaRegisterPageWidgets _evaRegisterPageWidget =
+      EvaRegisterPageWidgets();
 
   @override
   Widget build(BuildContext context) {
@@ -18,17 +19,13 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(" EVA REGISTER PAGE"),
-            ],
+            children: [_evaRegisterPageWidget.pageTitleText()],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _evaWidget.widgetNavigationIconButton(Icons.logout, "Logout", context)
-            ],
+            children: [_evaRegisterPageWidget.logoutButton(context)],
           )
         ])));
   }

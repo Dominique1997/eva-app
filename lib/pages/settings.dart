@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:eva_app/utilities/app_widgets.dart';
-import 'package:eva_app/utilities/app_preferences.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -10,14 +9,9 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  final EvaPreferences _evaPreference = EvaPreferences();
-  final EvaWidgets _evaWidget = EvaWidgets();
-
-   @override
-  void initState(){
-    super.initState();
-    _evaPreference.loadSettings();
-  }
+  final EvaSettingsPageWidgets _evaSettingsPageWidget =
+      EvaSettingsPageWidgets();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -28,21 +22,19 @@ class _SettingsPageState extends State<SettingsPage> {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _evaWidget.widgetMainTitle("EVA SETTINGS", 50),
-              ],
+              children: [_evaSettingsPageWidget.pageTitleText()],
             ),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [_evaSettingsPageWidget.serverURLInputField()]),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              _evaWidget.widgetInputField("url", _evaPreference.getServerUrl(), true, false),
-            ]),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              _evaWidget.widgetInputField("port", _evaPreference.getServerPort() , true, false),
+              _evaSettingsPageWidget.serverPortInputField(),
             ]),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _evaWidget.widgetNavigationTextButton("Reset settings", context),
-                _evaWidget.widgetNavigationTextButton("Cancel", context)
+                _evaSettingsPageWidget.resetSettingsTextButton(context),
+                _evaSettingsPageWidget.cancelTextButton(context)
               ],
             )
           ],
