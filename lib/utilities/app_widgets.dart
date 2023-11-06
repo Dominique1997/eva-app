@@ -30,11 +30,11 @@ class EvaLoginPageWidgets extends EvaBaseWidgets {
     return super.widgetMainTitle("EVA APP", 50);
   }
 
-  SizedBox serverUsernameInputField() {
+  Widget serverUsernameInputField() {
     return super.widgetInputField("Username", true, false);
   }
 
-  SizedBox serverPasswordInputField() {
+  Widget serverPasswordInputField() {
     return super.widgetInputField("Password", true, true);
   }
 }
@@ -54,16 +54,16 @@ class EvaSettingsPageWidgets extends EvaBaseWidgets {
     return super.widgetMainTitle("EVA SETTINGS", 50);
   }
 
-  SizedBox serverURLInputField() {
+  Widget serverURLInputField() {
     return super.widgetInputField("url", true, false);
   }
 
-  SizedBox serverPortInputField() {
+  Widget serverPortInputField() {
     return super.widgetInputField("port", true, false);
   }
 
   TextButton saveSettingsTextButton(BuildContext context) {
-    return super.widgetNavigationTextButton("Reset settings", context);
+    return super.widgetNavigationTextButton("Save settings", context);
   }
 
   TextButton resetSettingsTextButton(BuildContext context) {
@@ -103,22 +103,29 @@ class EvaBaseWidgets {
         child: Text(buttonText));
   }
 
-  SizedBox widgetInputField(
-      String shownHinttext, bool defaultEnabled, bool hideText) {
-    return SizedBox(
-        width: 500,
-        child: TextField(
-          controller: TextEditingController(text: _evaAction.getValue(shownHinttext)) ,
-          decoration: InputDecoration(
-            enabled: defaultEnabled,
-            border: const OutlineInputBorder(),
-            hintText: shownHinttext,
+Widget widgetInputField(shownHinttext, enabled, obscureText){
+  return FutureBuilder<String?>(
+    future: _evaAction.getValue(shownHinttext),
+    builder: (context, snapshot) {
+        return SizedBox(
+          width: 500,
+          child: TextField(
+            controller: TextEditingController(text: snapshot.data),
+            decoration: InputDecoration(
+              enabled: enabled,
+              border: const OutlineInputBorder(),
+              hintText: shownHinttext,
             ),
-          onChanged: (text) {
-            _evaAction.saveNewValue(shownHinttext, text);
-          },
-          obscureText: hideText));
+            onChanged: (text) {
+              _evaAction.saveNewValue("Username", text);
+            },
+            obscureText: obscureText,
+          ),
+        );
+      }
+      );
   }
+
 
   Text widgetMainTitle(String mainTitle, double sizeOfText) {
     return Text(mainTitle, style: TextStyle(fontSize: sizeOfText));

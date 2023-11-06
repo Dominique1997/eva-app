@@ -3,22 +3,25 @@ import 'package:shared_preferences/shared_preferences.dart';
 class EvaPreferences{
 
   EvaPreferences(){
-    this.sharedPref = await SharedPreferences.getInstance();
   }
 
   void setServerUrl(serverUrl) async {
+    SharedPreferences sharedPref = await SharedPreferences.getInstance();
     sharedPref.setString("server_url", serverUrl);
   }
 
   void setServerPort(serverPort) async {
+    SharedPreferences sharedPref = await SharedPreferences.getInstance();
     sharedPref.setString("server_port", serverPort);
   }
 
-  String getServerUrl() {
+  Future<String?> getServerUrl() async{
+    SharedPreferences sharedPref = await SharedPreferences.getInstance();
     return sharedPref.getString("server_url") ?? "localhost";
   }
 
-  String getServerPort() {
+  Future<String?> getServerPort() async {
+    SharedPreferences sharedPref = await SharedPreferences.getInstance();
     return sharedPref.getString("server_port") ?? "1234";
   }
 

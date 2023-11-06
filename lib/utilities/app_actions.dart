@@ -19,7 +19,6 @@ class EvaActions {
   }
 
   void saveNewValue(String inputFieldHintText, String newValue) {
-    _evaPreference.initState();
     String hintText = "server_${inputFieldHintText.toLowerCase()}";
     if (hintText == "server_url") {
       _evaPreference.setServerUrl(newValue);
@@ -28,8 +27,7 @@ class EvaActions {
     }
   }
 
-  String getValue(shownHinttext) {
-    _evaPreference.initState();
+  Future<String?> getValue(shownHinttext) {
     String hintText = "server_${shownHinttext.toLowerCase()}";
 
     if (hintText == "server_url") {
@@ -40,7 +38,7 @@ class EvaActions {
       final serverPort = _evaPreference.getServerPort();
       return serverPort;
     }
-    return "UNKNOWN";
+    return Future(() => "");
   }
 
   void login() async {
