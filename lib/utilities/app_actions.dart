@@ -29,7 +29,7 @@ class EvaActions {
 
   Future<String?> getValue(shownHinttext) {
     String hintText = "server_${shownHinttext.toLowerCase()}";
-
+    print(hintText);
     if (hintText == "server_url") {
       final serverUrl = _evaPreference.getServerUrl();
       return serverUrl;
