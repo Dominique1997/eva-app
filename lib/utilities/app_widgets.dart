@@ -1,10 +1,10 @@
-import 'package:eva_app/utilities/app_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:eva_app/pages/register.dart';
 import 'package:eva_app/pages/settings.dart';
 import 'package:eva_app/utilities/app_actions.dart';
 
 class EvaLoginPageWidgets extends EvaBaseWidgets {
+
   IconButton loginIconButton() {
     return IconButton(
         icon: widgetIcon(Icons.login),
@@ -116,8 +116,8 @@ Widget widgetInputField(shownHinttext, enabled, obscureText){
               border: const OutlineInputBorder(),
               hintText: shownHinttext,
             ),
-            onChanged: (text) {
-              _evaAction.saveNewValue("Username", text);
+            onChanged: (newValue) {
+              _evaAction.saveNewValue(shownHinttext, newValue);
             },
             obscureText: obscureText,
           ),
@@ -130,4 +130,5 @@ Widget widgetInputField(shownHinttext, enabled, obscureText){
   Text widgetMainTitle(String mainTitle, double sizeOfText) {
     return Text(mainTitle, style: TextStyle(fontSize: sizeOfText));
   }
+
 }

@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:eva_app/utilities/app_api.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:eva_app/utilities/app_preferences.dart';
 
 class EvaActions {
   final EvaPreferences _evaPreference = EvaPreferences();
+  final EvaApi _evaApi = EvaApi();
 
   void navigateTo(context, [routingPage]) {
     {
@@ -20,10 +22,13 @@ class EvaActions {
 
   void saveNewValue(String inputFieldHintText, String newValue) {
     String hintText = "server_${inputFieldHintText.toLowerCase()}";
+    print(hintText);
     if (hintText == "server_url") {
       _evaPreference.setServerUrl(newValue);
+      print(newValue);
     } else if (hintText == "server_port") {
       _evaPreference.setServerPort(newValue);
+      print(newValue);
     }
   }
 
@@ -42,9 +47,8 @@ class EvaActions {
   }
 
   void login() async {
-    String url = "http://127.0.0.1/api/status";
     await http
-        .get(Uri.parse(url))
+        .get(Uri.parse(_evaApi.login()))
         .then((value) => print("VALUE: ${json.decode(value.body)}"))
         .onError((error, stackTrace) => print("${error}"));
   }
