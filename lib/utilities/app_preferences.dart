@@ -12,17 +12,24 @@ class EvaPreferences{
     sharedPref.setString("server_port", serverPort);
   }
 
-  Future<String> getServerUrl() async{
+  Future<String?> getServerUrl() async{
     SharedPreferences sharedPref = await SharedPreferences.getInstance();
-    return sharedPref.getString("server_url") ?? "localhost";
+    if(sharedPref.containsKey("server_url")){
+      return sharedPref.getString("server_url");
+    }
+    return "localhost";
   }
 
-  Future<String> getServerPort() async {
+  Future<String?> getServerPort() async {
     SharedPreferences sharedPref = await SharedPreferences.getInstance();
-    return sharedPref.getString("server_port") ?? "1234";
-  }
+    if(sharedPref.containsKey("server_port")){
+      return sharedPref.getString("server_port");
+    }
+    return "localhost";  }
 
-  Uri getServerApiUrl() {
-    return Uri(host: getServerUrl() as String, port: getServerPort() as int);
+  Future<Uri> getServerApiUrl() async {
+    String? serverUrl = await getServerUrl();
+    String? serverPort = await getServerPort();
+    return Uri(host: serverUrl, port: int.parse(serverPort!));
   }
 }

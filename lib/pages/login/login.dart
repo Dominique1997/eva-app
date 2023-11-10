@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:eva_app/utilities/app_widgets.dart';
+import 'package:eva_app/pages/login/widgets.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:eva_app/utilities/app_widgets.dart';
+import 'package:eva_app/pages/home/widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

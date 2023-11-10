@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:eva_app/utilities/app_widgets.dart';
+import 'package:eva_app/pages/settings/widgets.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});

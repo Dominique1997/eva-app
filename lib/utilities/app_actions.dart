@@ -22,19 +22,15 @@ class EvaActions {
 
   void saveNewValue(String inputFieldHintText, String newValue) {
     String hintText = "server_${inputFieldHintText.toLowerCase()}";
-    print(hintText);
     if (hintText == "server_url") {
       _evaPreference.setServerUrl(newValue);
-      print(newValue);
     } else if (hintText == "server_port") {
       _evaPreference.setServerPort(newValue);
-      print(newValue);
     }
   }
 
   Future<String?> getValue(shownHinttext) {
     String hintText = "server_${shownHinttext.toLowerCase()}";
-    print(hintText);
     if (hintText == "server_url") {
       final serverUrl = _evaPreference.getServerUrl();
       return serverUrl;
@@ -49,7 +45,7 @@ class EvaActions {
   void login() async {
     await http
         .get(Uri.parse(_evaApi.login()))
-        .then((value) => print("VALUE: ${json.decode(value.body)}"))
-        .onError((error, stackTrace) => print("${error}"));
+        .then((value) => debugPrint("VALUE: ${json.decode(value.body)}"))
+        .onError((error, stackTrace) => debugPrint("$error"));
   }
 }
