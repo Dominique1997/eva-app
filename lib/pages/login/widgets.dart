@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:eva_app/utilities/app_api.dart';
 import 'package:eva_app/utilities/app_actions.dart';
 import 'package:eva_app/utilities/app_widgets.dart';
-import 'package:eva_app/pages/register/register.dart';
-import 'package:eva_app/pages/settings/settings.dart';
+import 'package:eva_app/pages/register/registerpage.dart';
+import 'package:eva_app/pages/settings/settingspage.dart';
+import 'package:eva_app/utilities/translations.dart';
+
 
 class EvaLoginPageWidgets extends EvaBaseWidgets {
   final EvaActions _evaAction = EvaActions();
   final EvaApi _evaApi = EvaApi();
 
-  IconButton loginIconButton() {
+  IconButton loginIconButton(){
     return IconButton(
         icon: widgetIcon(Icons.login),
-        tooltip: "Login",
+        tooltip: "login",
         onPressed: () => _evaApi.login());
   }
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:eva_app/utilities/app_actions.dart';
+import 'package:eva_app/utilities/translations.dart';
+
 
 class EvaBaseWidgets {
   final EvaActions _evaAction = EvaActions();
@@ -38,8 +40,8 @@ Widget widgetInputField(shownHinttext, enabled, obscureText){
       );
   }
 
-
-  Text widgetMainTitle(String mainTitle, double sizeOfText) {
+  Text widgetMainTitle(String mainTitle, double sizeOfText){
+    print(Translations.findTranslation("Login","Nederlands").then((value) => print(value)));
     return Text(mainTitle, style: TextStyle(fontSize: sizeOfText));
   }
 

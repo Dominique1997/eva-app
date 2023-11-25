@@ -7,6 +7,8 @@ class LoginPage extends StatefulWidget {
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
+void initState(){
+}
 
 class _LoginPageState extends State<LoginPage> {
   final EvaLoginPageWidgets _evaLoginPageWidget = EvaLoginPageWidgets();
