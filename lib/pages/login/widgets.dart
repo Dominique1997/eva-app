@@ -1,21 +1,19 @@
+import 'package:eva_app/pages/home/homepage.dart';
 import 'package:flutter/material.dart';
-import 'package:eva_app/utilities/app_api.dart';
 import 'package:eva_app/utilities/app_actions.dart';
 import 'package:eva_app/utilities/app_widgets.dart';
 import 'package:eva_app/pages/register/registerpage.dart';
 import 'package:eva_app/pages/settings/settingspage.dart';
-import 'package:eva_app/utilities/translations.dart';
-
 
 class EvaLoginPageWidgets extends EvaBaseWidgets {
   final EvaActions _evaAction = EvaActions();
-  final EvaApi _evaApi = EvaApi();
 
-  IconButton loginIconButton(){
+  IconButton loginIconButton(BuildContext context) {
     return IconButton(
         icon: widgetIcon(Icons.login),
         tooltip: "login",
-        onPressed: () => _evaApi.login());
+        //onPressed: () => _evaApi.login());
+        onPressed: () => _evaAction.navigateTo(context, const HomePage()));
   }
 
   IconButton registerIconButton(BuildContext context) {

@@ -14,18 +14,25 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [_evaHomePageWidget.pageTitleText()]),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [_evaHomePageWidget.inputTextField()],
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _evaHomePageWidget.pageTitleText(),
+              _evaHomePageWidget.sendCommand(),
+              _evaHomePageWidget.logoutTextButton(context)
             ],
-          ),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [_evaHomePageWidget.logoutTextButton(context)])
-        ])));
+          )
+        ],
+      ),
+    ));
   }
 }

@@ -7,8 +7,8 @@ class LoginPage extends StatefulWidget {
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
-void initState(){
-}
+
+void initState() {}
 
 class _LoginPageState extends State<LoginPage> {
   final EvaLoginPageWidgets _evaLoginPageWidget = EvaLoginPageWidgets();
@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _evaLoginPageWidget.loginIconButton(),
+            _evaLoginPageWidget.loginIconButton(context),
             _evaLoginPageWidget.registerIconButton(context),
             _evaLoginPageWidget.settingsIconButton(context)
           ],

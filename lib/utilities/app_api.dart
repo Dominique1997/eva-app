@@ -1,19 +1,26 @@
 import 'package:eva_app/utilities/app_preferences.dart';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' show get, Response;
+import 'package:http/http.dart' show get, post, Response;
 
 class EvaApi {
-  Uri? apiUrl;
-  EvaPreferences? _evaPreference;
+  Uri apiUrl = Uri();
+  final EvaPreferences _evaPreference = EvaPreferences();
 
-  EvaApi(){
-    _evaPreference = EvaPreferences();
-    apiUrl = Uri.parse("${_evaPreference!.getServerApiUrl()}");
+  EvaApi() {
+    apiUrl = Uri.parse("${_evaPreference.getServerApiUrl()}");
   }
 
   login() async {
-    Response response = await get(Uri.parse("$apiUrl/api/state"));
+    Response response =
+        await get(Uri.parse("${_evaPreference.getServerApiUrl()}/api/state"));
     debugPrint(response.body);
   }
-  
+
+  checkCommand(String command) {
+    var uriBody = {"OSType": "linux", "command": command};
+    Future<Response> response = post(
+        Uri.parse("${_evaPreference.getServerApiUrl()}/api/ai/check"),
+        body: uriBody);
+    print(response);
+  }
 }

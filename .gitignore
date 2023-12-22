@@ -46,3 +46,6 @@ app.*.map.json
 # Personal added ignore
 
 /build
+pubspec.lock
+windows/flutter/generated_plugin_registrant.cc
+windows/flutter/generated_plugins.cmake
