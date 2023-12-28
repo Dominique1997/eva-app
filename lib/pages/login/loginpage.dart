@@ -21,24 +21,24 @@ class _LoginPageState extends State<LoginPage> {
           Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [_evaLoginPageWidget.pageTitleText()],
+          children: [_evaLoginPageWidget.widgetPageTitleText()],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _evaLoginPageWidget.serverUsernameInputField(),
+            _evaLoginPageWidget.widgetServerUsernameInputField(),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [_evaLoginPageWidget.serverPasswordInputField()],
+          children: [_evaLoginPageWidget.widgetServerPasswordInputField()],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _evaLoginPageWidget.loginIconButton(context),
-            _evaLoginPageWidget.registerIconButton(context),
-            _evaLoginPageWidget.settingsIconButton(context)
+            _evaLoginPageWidget.widgetLoginIconButton(context),
+            _evaLoginPageWidget.widgetRegisterIconButton(context),
+            _evaLoginPageWidget.widgetSettingsIconButton(context)
           ],
         ),
       ]),

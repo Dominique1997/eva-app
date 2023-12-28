@@ -1,27 +1,40 @@
+import 'package:eva_app/utilities/app_values.dart';
 import 'package:flutter/material.dart';
-import 'package:eva_app/utilities/app_widgets.dart';
 import 'package:eva_app/utilities/app_api.dart';
-import 'package:eva_app/utilities/app_actions.dart';
+import 'package:eva_app/utilities/app_widgets.dart';
 
 class EvaHomePageWidgets extends EvaBaseWidgets {
-  final EvaApi _evaApi = EvaApi();
-  final EvaActions _evaAction = EvaActions();
+  late EvaApi _evaApi;
+  late EvaAppValues _evaAppValues;
 
-  Text pageTitleText() {
+  EvaHomePageWidgets() {
+    _evaApi = EvaApi();
+    _evaAppValues = EvaAppValues();
+  }
+
+  Text widgetPageTitleText() {
     return super.widgetMainTitle("EVA HOME PAGE", 50);
   }
 
-  TextButton logoutTextButton(BuildContext context) {
+  TextButton widgetLogoutTextButton(BuildContext context) {
     return super.widgetNavigationTextButton("Logout", context);
   }
 
-  Widget inputTextField() {
-    return super.widgetInputField("Question", true, false);
+  SizedBox widgetInputTextField() {
+    TextField inputTextField = super.widgetTextField("Question", true, false,
+        ((value) => _evaAppValues.setQuestion(value)), TextInputType.text);
+    SizedBox inputSizedBox = super.widgetSizedBox(inputTextField);
+    return inputSizedBox;
   }
 
-  Widget sendCommand() {
-    var commandText = _evaAction.getValue("Question");
-    return super
-        .widgetActionTextButton("Send command", _evaApi.checkCommand("hi"));
+  TextButton widgetSendCommandButton() {
+    TextButton checkCommandButton = super.widgetActionTextButton(
+        "Send command", () => _evaApi.checkCommand("hello"));
+    return checkCommandButton;
+  }
+
+  TextButton widgetTestButton() {
+    return super.widgetActionTextButton(
+        "Test button", () => print("HI i am a test button"));
   }
 }

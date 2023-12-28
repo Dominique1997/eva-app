@@ -21,11 +21,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [_evaRegisterPageWidget.pageTitleText()],
+            children: [_evaRegisterPageWidget.widgetPageTitleText()],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [_evaRegisterPageWidget.logoutButton(context)],
+            children: [_evaRegisterPageWidget.widgetLogoutButton(context)],
           )
         ])));
   }

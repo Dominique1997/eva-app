@@ -7,11 +7,11 @@ class Translations {
       return text;
     }
 
-    String translations_content =
+    String translationsContent =
         await rootBundle.loadString("translations/$language.json");
-    var json_data = json.decode(translations_content);
-    if (json_data[text] != null) {
-      var data = json_data[text];
+    var jsonData = json.decode(translationsContent);
+    if (jsonData[text] != null) {
+      var data = jsonData[text];
       return Future(() => data);
     }
     return Future(() => "$text-not-translated");

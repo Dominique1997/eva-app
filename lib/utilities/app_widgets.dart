@@ -3,7 +3,11 @@ import 'package:eva_app/utilities/app_actions.dart';
 import 'package:eva_app/utilities/translations.dart';
 
 class EvaBaseWidgets {
-  final EvaActions _evaAction = EvaActions();
+  late EvaActions _evaAction;
+
+  EvaBaseWidgets() {
+    _evaAction = EvaActions();
+  }
 
   Icon widgetIcon(IconData icon) {
     return Icon(icon);
@@ -16,35 +20,40 @@ class EvaBaseWidgets {
         child: Text(buttonText));
   }
 
-  Widget widgetActionTextButton(String buttonText, action) {
+  TextButton widgetActionTextButton(String buttonText, [action]) {
     return TextButton(onPressed: action, child: Text(buttonText));
   }
 
-  Widget widgetInputField(shownHinttext, enabled, obscureText) {
-    return FutureBuilder<String?>(
-        future: _evaAction.getValue(shownHinttext),
-        builder: (context, snapshot) {
-          return SizedBox(
-            width: 500,
-            child: TextField(
-              controller: TextEditingController(text: snapshot.data),
-              decoration: InputDecoration(
-                enabled: enabled,
-                border: const OutlineInputBorder(),
-                hintText: shownHinttext,
-              ),
-              onChanged: (newValue) {
-                _evaAction.saveNewValue(shownHinttext, newValue);
-              },
-              obscureText: obscureText,
-            ),
-          );
-        });
+  SizedBox widgetSizedBox([childElement = Widget]) {
+    return SizedBox(
+      width: 500,
+      child: childElement,
+    );
+  }
+
+  TextField widgetTextField(
+      String shownHinttext,
+      bool enabled,
+      bool obscureText,
+      ValueChanged<String> onChanged,
+      TextInputType typeOfInput,
+      [defaultText]) {
+    return TextField(
+      controller: TextEditingController(text: defaultText ?? ""),
+      decoration: InputDecoration(
+        enabled: enabled,
+        border: const OutlineInputBorder(),
+        hintText: shownHinttext,
+      ),
+      onChanged: onChanged,
+      obscureText: obscureText,
+      keyboardType: typeOfInput,
+    );
   }
 
   Text widgetMainTitle(String mainTitle, double sizeOfText) {
-    print(Translations.findTranslation("Login", "Nederlands")
-        .then((value) => print(value)));
+    Translations.findTranslation("Login", "Nederlands")
+        .then((value) => debugPrint(value));
     return Text(mainTitle, style: TextStyle(fontSize: sizeOfText));
   }
 }
