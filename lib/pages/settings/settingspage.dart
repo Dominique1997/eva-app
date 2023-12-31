@@ -21,20 +21,20 @@ class _SettingsPageState extends State<SettingsPage> {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [_evaSettingsPageWidget.pageTitleText()],
+              children: [_evaSettingsPageWidget.pageTitle()],
             ),
             Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [_evaSettingsPageWidget.widgetServerURLTextField()]),
+                children: [_evaSettingsPageWidget.widgetServerURLField()]),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              _evaSettingsPageWidget.widgetServerPortTextField(),
+              _evaSettingsPageWidget.widgetServerPortField(),
             ]),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _evaSettingsPageWidget.widgetSaveSettingsTextButton(),
-                _evaSettingsPageWidget.widgetResetSettingsTextButton(),
-                _evaSettingsPageWidget.widgetCancelTextButton(context)
+                _evaSettingsPageWidget.widgetSaveSettingsButton(),
+                _evaSettingsPageWidget.widgetResetSettingsButton(),
+                _evaSettingsPageWidget.widgetCancelButton(context)
               ],
             )
           ],

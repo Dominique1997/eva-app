@@ -11,16 +11,6 @@ class EvaAppValues {
     sharedPref.setString("server_port", serverPort);
   }
 
-  void setServerUsername(String serverUsername) async {
-    SharedPreferences sharedPref = await SharedPreferences.getInstance();
-    sharedPref.setString("server_username", serverUsername);
-  }
-
-  void setQuestion(String serverQuestion) async {
-    SharedPreferences sharedPref = await SharedPreferences.getInstance();
-    sharedPref.setString("server_question", serverQuestion);
-  }
-
   Future<String> getServerUrl() async {
     SharedPreferences sharedPref = await SharedPreferences.getInstance();
     return sharedPref.getString("server_url") ?? "localhost";
@@ -29,16 +19,6 @@ class EvaAppValues {
   Future<String> getServerPort() async {
     SharedPreferences sharedPref = await SharedPreferences.getInstance();
     return sharedPref.getString("server_port") ?? "9999";
-  }
-
-  Future<String> getServerUsername() async {
-    SharedPreferences sharedPref = await SharedPreferences.getInstance();
-    return sharedPref.getString("server_username") ?? "UNKNOWN";
-  }
-
-  Future<String> getQuestion() async {
-    SharedPreferences sharedPref = await SharedPreferences.getInstance();
-    return sharedPref.getString("server_question") ?? "";
   }
 
   void resetPreferences() async {

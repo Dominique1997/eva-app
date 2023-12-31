@@ -2,53 +2,53 @@ import 'package:flutter/material.dart';
 import 'package:eva_app/utilities/app_actions.dart';
 import 'package:eva_app/utilities/app_api.dart';
 import 'package:eva_app/utilities/app_widgets.dart';
-import 'package:eva_app/utilities/app_values.dart';
 import 'package:eva_app/pages/register/registerpage.dart';
 import 'package:eva_app/pages/settings/settingspage.dart';
 
 class EvaLoginPageWidgets extends EvaBaseWidgets {
   late EvaActions _evaAction;
-  late EvaAppValues _evaAppValues;
   late EvaApi _evaApi;
+  late String username;
+  late String password;
 
   EvaLoginPageWidgets() {
     _evaAction = EvaActions();
-    _evaAppValues = EvaAppValues();
     _evaApi = EvaApi();
+    username = "";
+    password = "";
   }
 
-  IconButton widgetLoginIconButton(BuildContext context) {
+  IconButton widgetLoginButton(BuildContext context) {
     return IconButton(
         icon: widgetIcon(Icons.login),
         tooltip: "login",
         onPressed: () => _evaApi.login(context));
-    //onPressed: () => _evaAction.navigateTo(context, const HomePage()));
   }
 
-  IconButton widgetRegisterIconButton(BuildContext context) {
+  IconButton widgetRegisterButton(BuildContext context) {
     return IconButton(
-        icon: widgetIcon(Icons.app_registration_rounded),
+        icon: widgetIcon(Icons.app_registration),
         tooltip: "Register",
         onPressed: () => _evaAction.navigateTo(context, const RegisterPage()));
   }
 
-  IconButton widgetSettingsIconButton(BuildContext context) {
+  IconButton widgetSettingsButton(BuildContext context) {
     return IconButton(
         icon: widgetIcon(Icons.settings),
         tooltip: "Settings",
         onPressed: () => _evaAction.navigateTo(context, const SettingsPage()));
   }
 
-  Text widgetPageTitleText() {
+  Text widgetPageTitle() {
     return super.widgetMainTitle("EVA APP", 50);
   }
 
-  SizedBox widgetServerUsernameInputField() {
+  SizedBox widgetServerUsernameField() {
     TextField serverUsernameInputField = super.widgetTextField(
       "Username",
       true,
       false,
-      ((value) => _evaAppValues.setServerUsername(value)),
+      ((value) => username = value),
       TextInputType.text,
     );
     SizedBox serverUsernameSizedBox =
@@ -56,9 +56,9 @@ class EvaLoginPageWidgets extends EvaBaseWidgets {
     return serverUsernameSizedBox;
   }
 
-  SizedBox widgetServerPasswordInputField() {
-    TextField serverPasswordInputField = super.widgetTextField(
-        "Password", true, true, ((value) => {}), TextInputType.visiblePassword);
+  SizedBox widgetServerPasswordField() {
+    TextField serverPasswordInputField = super.widgetTextField("Password", true,
+        true, ((value) => password = value), TextInputType.visiblePassword);
     SizedBox serverPasswordSizedBox =
         super.widgetSizedBox(serverPasswordInputField);
     return serverPasswordSizedBox;

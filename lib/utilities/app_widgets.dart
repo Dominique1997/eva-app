@@ -1,27 +1,36 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:eva_app/utilities/app_actions.dart';
 import 'package:eva_app/utilities/translations.dart';
 
 class EvaBaseWidgets {
+  late Directory folderContent;
+  late List<FileSystemEntity> files;
   late EvaActions _evaAction;
+  late List<DropdownMenuItem> languagesMenuItem;
 
   EvaBaseWidgets() {
     _evaAction = EvaActions();
+    folderContent = Directory("translations");
+    files = folderContent.listSync();
+    languagesMenuItem = <DropdownMenuItem>[];
   }
 
   Icon widgetIcon(IconData icon) {
     return Icon(icon);
   }
 
-  TextButton widgetNavigationTextButton(String buttonText, context,
+  IconButton widgetNavigationIconButton(IconData icon, String hintText, context,
       [navigateToPage]) {
-    return TextButton(
-        onPressed: () => _evaAction.navigateTo(context, navigateToPage),
-        child: Text(buttonText));
+    return IconButton(
+        icon: widgetIcon(icon),
+        tooltip: hintText,
+        onPressed: () => _evaAction.navigateTo(context, navigateToPage));
   }
 
-  TextButton widgetActionTextButton(String buttonText, [action]) {
-    return TextButton(onPressed: action, child: Text(buttonText));
+  IconButton widgetActionIconButton(IconData icon, String hintText, [action]) {
+    return IconButton(
+        onPressed: action, tooltip: hintText, icon: widgetIcon(icon));
   }
 
   SizedBox widgetSizedBox([childElement = Widget]) {
@@ -55,5 +64,19 @@ class EvaBaseWidgets {
     Translations.findTranslation("Login", "Nederlands")
         .then((value) => debugPrint(value));
     return Text(mainTitle, style: TextStyle(fontSize: sizeOfText));
+  }
+
+  widgetAvailableLanguagesButton() {
+    for (final FileSystemEntity file in files) {
+      String fileName =
+          file.path.replaceAll("translations/", "").replaceAll(".json", "");
+      DropdownMenuItem languageItem = DropdownMenuItem(
+        child: Text(fileName),
+        value: fileName,
+      );
+      languagesMenuItem.add(languageItem);
+    }
+    return DropdownButton(
+        items: languagesMenuItem, onChanged: (value) => print(value));
   }
 }

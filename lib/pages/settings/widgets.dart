@@ -11,15 +11,13 @@ class EvaSettingsPageWidgets extends EvaBaseWidgets {
     _evaAppValues = EvaAppValues();
     serverURL = "";
     serverPort = "";
-    //_evaAppValues.getServerUrl().then((value) => serverURL = value);
-    //_evaAppValues.getServerPort().then((value) => serverPort = value);
   }
 
-  Text pageTitleText() {
+  Text pageTitle() {
     return super.widgetMainTitle("EVA SETTINGS", 50);
   }
 
-  Widget widgetServerURLTextField() {
+  Widget widgetServerURLField() {
     return FutureBuilder<String?>(
       future: _evaAppValues.getServerUrl(),
       builder: (context, AsyncSnapshot<String?> snapshot) {
@@ -43,7 +41,7 @@ class EvaSettingsPageWidgets extends EvaBaseWidgets {
     );
   }
 
-  Widget widgetServerPortTextField() {
+  Widget widgetServerPortField() {
     return FutureBuilder<String?>(
       future: _evaAppValues.getServerPort(),
       builder: (context, AsyncSnapshot<String?> snapshot) {
@@ -67,20 +65,21 @@ class EvaSettingsPageWidgets extends EvaBaseWidgets {
     );
   }
 
-  TextButton widgetSaveSettingsTextButton() {
-    return super.widgetActionTextButton("Save settings", () {
+  IconButton widgetSaveSettingsButton() {
+    return super.widgetActionIconButton(Icons.save, "Save settings", () {
       _evaAppValues.setServerPort(serverPort);
       _evaAppValues.setServerUrl(serverURL);
     });
   }
 
-  TextButton widgetResetSettingsTextButton() {
-    return super.widgetActionTextButton("Reset settings", () {
+  IconButton widgetResetSettingsButton() {
+    return super.widgetActionIconButton(Icons.restore_page, "Reset settings",
+        () {
       _evaAppValues.resetPreferences();
     });
   }
 
-  TextButton widgetCancelTextButton(BuildContext context) {
-    return super.widgetNavigationTextButton("Cancel", context);
+  IconButton widgetCancelButton(BuildContext context) {
+    return super.widgetNavigationIconButton(Icons.cancel, "Cancel", context);
   }
 }

@@ -19,16 +19,16 @@ class _HomePageState extends State<HomePage> {
         children: [
           Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [_evaHomePageWidget.widgetPageTitleText()]),
+              children: [_evaHomePageWidget.widgetPageTitle()]),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [_evaHomePageWidget.widgetInputTextField()],
+            children: [_evaHomePageWidget.widgetCommandInputField()],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _evaHomePageWidget.widgetSendCommandButton(),
-              _evaHomePageWidget.widgetLogoutTextButton(context),
+              _evaHomePageWidget.widgetLogoutButton(context),
               _evaHomePageWidget.widgetTestButton()
             ],
           )

@@ -21,7 +21,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [_evaRegisterPageWidget.widgetPageTitleText()],
+            children: [_evaRegisterPageWidget.widgetAvailableLanguagesButton()],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [_evaRegisterPageWidget.widgetPageTitle()],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
