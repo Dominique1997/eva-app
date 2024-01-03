@@ -9,11 +9,11 @@ class EvaRegisterPageWidgets extends EvaBaseWidgets {
     _evaAction = EvaActions();
   }
 
-  Text widgetPageTitle() {
+  Widget widgetPageTitle() {
     return super.widgetMainTitle("EVA REGISTER PAGE", 50);
   }
 
-  IconButton widgetLogoutButton(BuildContext context) {
+  Widget widgetLogoutButton(BuildContext context) {
     return widgetActionIconButton(
         Icons.logout, "Logout", () => _evaAction.navigateTo(context));
   }

@@ -1,3 +1,4 @@
+import 'package:eva_app/pages/home/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:eva_app/utilities/app_actions.dart';
 import 'package:eva_app/utilities/app_api.dart';
@@ -18,49 +19,38 @@ class EvaLoginPageWidgets extends EvaBaseWidgets {
     password = "";
   }
 
-  IconButton widgetLoginButton(BuildContext context) {
-    return IconButton(
-        icon: widgetIcon(Icons.login),
-        tooltip: "login",
-        onPressed: () => _evaApi.login(context));
+  Widget widgetLoginButton(BuildContext context) {
+    return super.widgetActionIconButton(Icons.login, "Login",
+        () => _evaAction.navigateTo(context, const HomePage()));
   }
 
-  IconButton widgetRegisterButton(BuildContext context) {
-    return IconButton(
-        icon: widgetIcon(Icons.app_registration),
-        tooltip: "Register",
-        onPressed: () => _evaAction.navigateTo(context, const RegisterPage()));
+  Widget widgetRegisterButton(BuildContext context) {
+    return super.widgetActionIconButton(Icons.app_registration, "Register",
+        () => _evaAction.navigateTo(context, const RegisterPage()));
   }
 
-  IconButton widgetSettingsButton(BuildContext context) {
-    return IconButton(
-        icon: widgetIcon(Icons.settings),
-        tooltip: "Settings",
-        onPressed: () => _evaAction.navigateTo(context, const SettingsPage()));
+  Widget widgetSettingsButton(BuildContext context) {
+    return super.widgetActionIconButton(Icons.settings, "Settings",
+        () => _evaAction.navigateTo(context, const SettingsPage()));
   }
 
-  Text widgetPageTitle() {
+  Widget widgetPageTitle() {
     return super.widgetMainTitle("EVA APP", 50);
   }
 
   SizedBox widgetServerUsernameField() {
-    TextField serverUsernameInputField = super.widgetTextField(
+    return super.widgetSizedBox(super.widgetTextField(
       "Username",
       true,
       false,
       ((value) => username = value),
       TextInputType.text,
-    );
-    SizedBox serverUsernameSizedBox =
-        super.widgetSizedBox(serverUsernameInputField);
-    return serverUsernameSizedBox;
+    ));
   }
 
   SizedBox widgetServerPasswordField() {
-    TextField serverPasswordInputField = super.widgetTextField("Password", true,
-        true, ((value) => password = value), TextInputType.visiblePassword);
-    SizedBox serverPasswordSizedBox =
-        super.widgetSizedBox(serverPasswordInputField);
-    return serverPasswordSizedBox;
+    return super.widgetSizedBox(super.widgetTextField("Password", true, true,
+        ((value) => password = value), TextInputType.visiblePassword));
+    ;
   }
 }

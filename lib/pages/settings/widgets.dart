@@ -13,7 +13,7 @@ class EvaSettingsPageWidgets extends EvaBaseWidgets {
     serverPort = "";
   }
 
-  Text pageTitle() {
+  Widget pageTitle() {
     return super.widgetMainTitle("EVA SETTINGS", 50);
   }
 
@@ -24,17 +24,11 @@ class EvaSettingsPageWidgets extends EvaBaseWidgets {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator();
         } else if (snapshot.hasError) {
-          // Handle error scenario
           return Text('Error: ${snapshot.error}');
         } else {
-          TextField serverURLTextField = super.widgetTextField(
-              "url",
-              true,
-              false,
-              (value) => serverURL = value,
-              TextInputType.number,
-              snapshot.data ?? "");
-          SizedBox serverURLSizedBox = super.widgetSizedBox(serverURLTextField);
+          SizedBox serverURLSizedBox = super.widgetSizedBox(super
+              .widgetTextField("url", true, false, (value) => serverURL = value,
+                  TextInputType.number, snapshot.data ?? ""));
           return serverURLSizedBox;
         }
       },
@@ -50,36 +44,36 @@ class EvaSettingsPageWidgets extends EvaBaseWidgets {
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
-          TextField serverPortTextField = super.widgetTextField(
-              "port",
-              true,
-              false,
-              (value) => serverPort = value,
-              TextInputType.number,
-              snapshot.data ?? "");
-          SizedBox serverPortSizedBox =
-              super.widgetSizedBox(serverPortTextField);
+          SizedBox serverPortSizedBox = super.widgetSizedBox(super
+              .widgetTextField(
+                  "port",
+                  true,
+                  false,
+                  (value) => serverPort = value,
+                  TextInputType.number,
+                  snapshot.data ?? ""));
           return serverPortSizedBox;
         }
       },
     );
   }
 
-  IconButton widgetSaveSettingsButton() {
+  Widget widgetSaveSettingsButton() {
     return super.widgetActionIconButton(Icons.save, "Save settings", () {
       _evaAppValues.setServerPort(serverPort);
       _evaAppValues.setServerUrl(serverURL);
+      _evaAppValues.setDefaultLanguage(selectedLanguage);
     });
   }
 
-  IconButton widgetResetSettingsButton() {
+  Widget widgetResetSettingsButton() {
     return super.widgetActionIconButton(Icons.restore_page, "Reset settings",
         () {
       _evaAppValues.resetPreferences();
     });
   }
 
-  IconButton widgetCancelButton(BuildContext context) {
+  Widget widgetCancelButton(BuildContext context) {
     return super.widgetNavigationIconButton(Icons.cancel, "Cancel", context);
   }
 }

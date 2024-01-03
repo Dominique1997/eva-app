@@ -11,27 +11,30 @@ class EvaHomePageWidgets extends EvaBaseWidgets {
     question = "";
   }
 
-  Text widgetPageTitle() {
+  Widget widgetPageTitle() {
     return super.widgetMainTitle("EVA HOME PAGE", 50);
   }
 
-  IconButton widgetLogoutButton(BuildContext context) {
+  Widget widgetLogoutButton(BuildContext context) {
     return super.widgetNavigationIconButton(Icons.logout, "Logout", context);
   }
 
-  SizedBox widgetCommandInputField() {
-    TextField inputTextField = super.widgetTextField("Question", true, false,
-        ((value) => question = value), TextInputType.text);
-    SizedBox inputSizedBox = super.widgetSizedBox(inputTextField);
+  Widget widgetCommandInputField() {
+    SizedBox inputSizedBox = super.widgetSizedBox(super.widgetTextField(
+        "Question",
+        true,
+        false,
+        ((value) => question = value),
+        TextInputType.text));
     return inputSizedBox;
   }
 
-  IconButton widgetSendCommandButton() {
+  Widget widgetSendCommandButton() {
     return super.widgetActionIconButton(
-        Icons.send, "Send command", () => _evaApi.checkCommand("hello"));
+        Icons.send, "Send question", () => _evaApi.checkCommand("hello"));
   }
 
-  IconButton widgetTestButton() {
+  Widget widgetTestButton() {
     return super.widgetActionIconButton(Icons.question_mark, "Test button",
         () => debugPrint("Hi i am a test button"));
   }
