@@ -1,8 +1,11 @@
 import 'dart:convert';
+import 'package:eva_app/utilities/app_values.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 class EvaTranslations {
-  static Future<String> findTranslation(text, language) async {
+  static Future<String> findTranslation(text) async {
+    EvaAppValues appvalue = EvaAppValues();
+    String language = await appvalue.getDefaultLanguage();
     if (language == "English") {
       return text;
     }

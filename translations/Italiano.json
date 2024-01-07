@@ -1,0 +1,18 @@
+{
+    "Username": "Nome utente",
+    "Password": "Parola d'ordine",
+    "Login": "Login",
+    "Register": "Registrati",
+    "Settings": "Installazione",
+    "Server IP/URL": "IP/URL del server",
+    "URL": "URL",
+    "Server port": "Porta del server",
+    "Language": "Lingua",
+    "Save settings": "Salva le impostazioni",
+    "Reset settings": "Ripristina le impostazioni",
+    "Cancel": "Annulla",
+    "Logout": "Disconnettersi",
+    "Question": "Domanda",
+    "Send question": "Invia domanda",
+    "Reset registration form": "Reimposta il modulo di registrazione"
+}

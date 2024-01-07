@@ -9,8 +9,13 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  final EvaSettingsPageWidgets _evaSettingsPageWidget =
-      EvaSettingsPageWidgets();
+  late EvaSettingsPageWidgets _evaSettingsPageWidget;
+
+  @override
+  void initState() {
+    super.initState();
+    _evaSettingsPageWidget = EvaSettingsPageWidgets(this);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +25,12 @@ class _SettingsPageState extends State<SettingsPage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [_evaSettingsPageWidget.widgetApiStateIcon()],
+            ),
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [_evaSettingsPageWidget.pageTitle()],
+              children: [_evaSettingsPageWidget.widgetPageTitle()],
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               _evaSettingsPageWidget.widgetTextLable("Server IP/URL"),
@@ -29,7 +38,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ]),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               _evaSettingsPageWidget.widgetTextLable("Server port"),
-              _evaSettingsPageWidget.widgetServerPortField(),
+              _evaSettingsPageWidget.widgetServerPortField()
             ]),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -42,8 +51,9 @@ class _SettingsPageState extends State<SettingsPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _evaSettingsPageWidget.widgetSaveSettingsButton(),
+                _evaSettingsPageWidget.widgetTestSettingsButton(),
                 _evaSettingsPageWidget.widgetResetSettingsButton(),
-                _evaSettingsPageWidget.widgetCancelButton(context),
+                _evaSettingsPageWidget.widgetCancelButton(context)
               ],
             )
           ],

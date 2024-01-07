@@ -25,7 +25,22 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [_evaRegisterPageWidget.widgetLogoutButton(context)],
+            children: [
+              _evaRegisterPageWidget.widgetRegisterUsernameField(),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _evaRegisterPageWidget.widgetRegisterPasswordField(),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _evaRegisterPageWidget.widgetSaveRegistrationButton(),
+              _evaRegisterPageWidget.widgetLogoutButton(context),
+            ],
           )
         ])));
   }

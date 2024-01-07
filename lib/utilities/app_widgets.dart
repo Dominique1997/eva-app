@@ -29,7 +29,7 @@ class EvaBaseWidgets {
   Widget widgetNavigationIconButton(IconData icon, String hintText, context,
       [navigateToPage]) {
     return FutureBuilder(
-        future: EvaTranslations.findTranslation(hintText, "Nederlands"),
+        future: EvaTranslations.findTranslation(hintText),
         builder: (context, AsyncSnapshot<String?> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CircularProgressIndicator();
@@ -47,7 +47,7 @@ class EvaBaseWidgets {
 
   Widget widgetActionIconButton(IconData icon, String hintText, [action]) {
     return FutureBuilder(
-        future: EvaTranslations.findTranslation(hintText, "Nederlands"),
+        future: EvaTranslations.findTranslation(hintText),
         builder: (context, AsyncSnapshot<String?> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CircularProgressIndicator();
@@ -73,7 +73,7 @@ class EvaBaseWidgets {
       ValueChanged<String> onChanged, TextInputType typeOfInput,
       [defaultText]) {
     return FutureBuilder(
-        future: EvaTranslations.findTranslation(shownHinttext, "Nederlands"),
+        future: EvaTranslations.findTranslation(shownHinttext),
         builder: (context, AsyncSnapshot<String?> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CircularProgressIndicator();
@@ -95,24 +95,13 @@ class EvaBaseWidgets {
         });
   }
 
-  Widget widgetMainTitle(String mainTitle, double sizeOfText) {
-    return FutureBuilder(
-        future: EvaTranslations.findTranslation(mainTitle, "Nederlands"),
-        builder: (context, AsyncSnapshot<String?> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
-          } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          } else {
-            return Text(snapshot.data.toString(),
-                style: TextStyle(fontSize: sizeOfText));
-          }
-        });
+  Text widgetMainTitle(String mainTitle, double sizeOfText) {
+    return Text(mainTitle, style: TextStyle(fontSize: sizeOfText));
   }
 
   Widget widgetTextLable(String text) {
     return FutureBuilder(
-        future: EvaTranslations.findTranslation(text, "Nederlands"),
+        future: EvaTranslations.findTranslation(text),
         builder: (context, AsyncSnapshot<String?> snapshot) {
           return Text(
             snapshot.data.toString(),

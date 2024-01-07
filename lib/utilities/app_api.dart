@@ -1,6 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:eva_app/pages/home/homepage.dart';
 import 'package:eva_app/utilities/app_actions.dart';
 import 'package:eva_app/utilities/app_values.dart';
 import 'package:http/http.dart' show Response, get, patch, post, put;
@@ -20,18 +20,18 @@ class EvaApi {
     uriHeader = {'Content-Type': 'application/json'};
   }
 
-  login(BuildContext context) async {
-    _getRequest("/api/status").then((value) => {
-          if (jsonDecode(value.body)["api_state"] == true)
-            {_evaAction.navigateTo(context, const HomePage())}
-        });
-  }
-
-  loginOriginal(BuildContext context) async {
-    _getRequest("/api/status").then((value) => {
-          if (jsonDecode(value.body)["api_state"] == true)
-            {_evaAction.navigateTo(context, const HomePage())}
-        });
+  Future testApi(String testIP, String testPort) async {
+    try {
+      Uri webUrl = Uri(
+          scheme: "http",
+          host: testIP,
+          port: int.parse(testPort),
+          path: "/api/status");
+      Response apiResponse = await get(webUrl);
+      return jsonDecode(apiResponse.body)["api_state"];
+    } catch (e) {
+      return false;
+    }
   }
 
   checkCommand(String command) {
