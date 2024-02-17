@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:eva_app/utilities/app_api.dart';
 import 'package:eva_app/utilities/app_values.dart';
@@ -10,12 +11,16 @@ class EvaSettingsPageWidgets extends EvaBaseWidgets {
   late State _state;
   String serverURL = "";
   String serverPort = "";
+  late Directory folderContent;
+  late List<FileSystemEntity> files;
 
   EvaSettingsPageWidgets(State state) {
     _state = state;
     apiState = false;
     _evaAppValues = EvaAppValues();
     _evaApi = EvaApi();
+    folderContent = Directory("translations");
+    files = folderContent.listSync();
   }
 
   Widget widgetPageTitle() {
@@ -34,7 +39,6 @@ class EvaSettingsPageWidgets extends EvaBaseWidgets {
           SizedBox serverURLSizedBox =
               widgetSizedBox(super.widgetTextField("url", true, false, (value) {
             serverURL = value;
-            print(serverURL);
           }, TextInputType.number, snapshot.data ?? ""));
           return serverURLSizedBox;
         }
@@ -67,7 +71,7 @@ class EvaSettingsPageWidgets extends EvaBaseWidgets {
     });
   }
 
-  void _updateApiState(newServerUrl, newServerPort) async {
+  _updateApiState(newServerUrl, newServerPort) async {
     bool updatedApiState = await _evaApi.testApi(newServerUrl, newServerPort);
     _state.setState(() {
       apiState = updatedApiState;
@@ -85,6 +89,7 @@ class EvaSettingsPageWidgets extends EvaBaseWidgets {
   Widget widgetResetSettingsButton() {
     return widgetActionIconButton(Icons.restore_page, "Reset settings", () {
       _evaAppValues.resetPreferences();
+      _state.setState(() {});
     });
   }
 
@@ -97,5 +102,21 @@ class EvaSettingsPageWidgets extends EvaBaseWidgets {
         ? widgetIcon(Icons.radio_button_checked)
         : widgetIcon(Icons.radio_button_unchecked);
     return apiStateIcon;
+  }
+
+  widgetAvailableLanguagesDropDown() {
+    for (final FileSystemEntity file in files) {
+      String fileName =
+          file.path.replaceAll("translations/", "").replaceAll(".json", "");
+      DropdownMenuItem languageItem = DropdownMenuItem(
+        value: fileName,
+        child: Text(fileName),
+      );
+      languagesMenuItem.add(languageItem);
+    }
+    return DropdownButton(
+      items: languagesMenuItem,
+      onChanged: (value) => selectedLanguage = value,
+    );
   }
 }

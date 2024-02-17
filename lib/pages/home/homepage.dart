@@ -9,7 +9,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final EvaHomePageWidgets _evaHomePageWidget = EvaHomePageWidgets();
+  late EvaHomePageWidgets _evaHomePageWidget;
+
+  @override
+  void initState() {
+    super.initState();
+    _evaHomePageWidget = EvaHomePageWidgets(this);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +27,9 @@ class _HomePageState extends State<HomePage> {
           Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [_evaHomePageWidget.widgetPageTitle()]),
+          Expanded(
+            child: _evaHomePageWidget.widgetChatHistoryListView(),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [_evaHomePageWidget.widgetCommandInputField()],

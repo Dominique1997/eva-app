@@ -10,7 +10,7 @@ class EvaLoginPageWidgets extends EvaBaseWidgets {
   String username = "";
   String password = "";
 
-  EvaLoginPageWidgets() {
+  EvaLoginPageWidgets(State state) {
     _evaAction = EvaActions();
   }
 
@@ -25,8 +25,12 @@ class EvaLoginPageWidgets extends EvaBaseWidgets {
   }
 
   Widget widgetSettingsButton(BuildContext context) {
-    return widgetActionIconButton(Icons.settings, "Settings",
-        () => _evaAction.navigateTo(context, const SettingsPage()));
+    return widgetActionIconButton(
+        Icons.settings,
+        "Settings",
+        () => {
+              _evaAction.navigateTo(context, const SettingsPage()),
+            });
   }
 
   Widget widgetPageTitle() {

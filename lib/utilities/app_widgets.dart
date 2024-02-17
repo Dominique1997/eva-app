@@ -1,12 +1,9 @@
-import 'dart:io';
 import 'package:eva_app/utilities/app_values.dart';
 import 'package:flutter/material.dart';
 import 'package:eva_app/utilities/app_actions.dart';
 import 'package:eva_app/utilities/translations.dart';
 
 class EvaBaseWidgets {
-  late Directory folderContent;
-  late List<FileSystemEntity> files;
   late EvaAppValues _appValues;
   late EvaActions _evaAction;
   late List<DropdownMenuItem> languagesMenuItem;
@@ -14,8 +11,6 @@ class EvaBaseWidgets {
 
   EvaBaseWidgets() {
     _evaAction = EvaActions();
-    folderContent = Directory("translations");
-    files = folderContent.listSync();
     languagesMenuItem = <DropdownMenuItem>[];
     _appValues = EvaAppValues();
     selectedLanguage = "";
@@ -45,7 +40,8 @@ class EvaBaseWidgets {
         });
   }
 
-  Widget widgetActionIconButton(IconData icon, String hintText, [action]) {
+  Widget widgetActionIconButton(
+      IconData icon, String hintText, Function() action) {
     return FutureBuilder(
         future: EvaTranslations.findTranslation(hintText),
         builder: (context, AsyncSnapshot<String?> snapshot) {
@@ -108,21 +104,5 @@ class EvaBaseWidgets {
             style: const TextStyle(fontSize: 20),
           );
         });
-  }
-
-  widgetAvailableLanguagesDropDown() {
-    for (final FileSystemEntity file in files) {
-      String fileName =
-          file.path.replaceAll("translations/", "").replaceAll(".json", "");
-      DropdownMenuItem languageItem = DropdownMenuItem(
-        value: fileName,
-        child: Text(fileName),
-      );
-      languagesMenuItem.add(languageItem);
-    }
-    return DropdownButton(
-      items: languagesMenuItem,
-      onChanged: (value) => selectedLanguage = value,
-    );
   }
 }

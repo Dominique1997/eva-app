@@ -33,11 +33,12 @@ class EvaRegisterPageWidgets extends EvaBaseWidgets {
   }
 
   Widget widgetSaveRegistrationButton() {
-    return widgetActionIconButton(Icons.save, "Register");
+    return widgetActionIconButton(
+        Icons.save, "Register", () => debugPrint("Registration is done"));
   }
 
   Widget widgetResetRegistrationButton() {
-    return widgetActionIconButton(
-        Icons.restore_page, "Reset registration form");
+    return widgetActionIconButton(Icons.restore_page, "Reset registration form",
+        () => debugPrint("Registration form is reset"));
   }
 }

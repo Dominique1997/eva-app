@@ -11,7 +11,13 @@ class LoginPage extends StatefulWidget {
 void initState() {}
 
 class _LoginPageState extends State<LoginPage> {
-  final EvaLoginPageWidgets _evaLoginPageWidget = EvaLoginPageWidgets();
+  late EvaLoginPageWidgets _evaLoginPageWidget;
+
+  @override
+  void initState() {
+    super.initState();
+    _evaLoginPageWidget = EvaLoginPageWidgets(this);
+  }
 
   @override
   Widget build(BuildContext context) {

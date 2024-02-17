@@ -1,6 +1,6 @@
+import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:eva_app/utilities/app_actions.dart';
 import 'package:eva_app/utilities/app_values.dart';
 import 'package:http/http.dart' show Response, get, patch, post, put;
@@ -34,14 +34,18 @@ class EvaApi {
     }
   }
 
-  checkCommand(String command) {
-    var data = jsonEncode(
-        {'token': 'UNKNOWN', 'OSType': 'windows', 'command': command});
-    _postRequest("/api/ai/check", data)
-        .then((value) => debugPrint(
-            "The answer coming from the api is ${jsonDecode(value.body)["answer"]}"))
-        .onError((error, stackTrace) =>
-            debugPrint("Something went wrong: ${error.toString()}"));
+  Future<String> checkCommand(String command) {
+    var data = jsonEncode({
+      'token': 'UNKNOWN',
+      'OSType': Platform.operatingSystem,
+      'command': command
+    });
+    return Future.delayed(const Duration(seconds: 2), () async {
+      Response apiRepsonse = await _postRequest("/api/ai/check", data);
+      String answer = jsonDecode(apiRepsonse.body)["answer"];
+      print(answer);
+      return answer;
+    });
   }
 
   Future<Response> _postRequest(endpoint, data) async {
