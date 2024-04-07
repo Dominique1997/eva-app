@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:eva_app/utilities/app_api.dart';
-import 'package:eva_app/utilities/app_widgets.dart';
+import 'package:eva_app/app_utilities/eva_specific/eva_widgets/all_eva_widgets.dart';
+import 'package:eva_app/app_utilities/eva_specific/eva_utilities/eva_api.dart';
 
-class EvaHomePageWidgets extends EvaBaseWidgets {
+class EvaHomePageWidgets {
   String question = "";
   String response = "";
   late EvaApi _evaApi;
@@ -15,39 +15,54 @@ class EvaHomePageWidgets extends EvaBaseWidgets {
     _chatHistory = [];
   }
 
-  Widget widgetPageTitle() {
-    return widgetMainTitle("EVA HOME PAGE", 50);
+  WidgetMainTitle widgetPageTitle() {
+    return const WidgetMainTitle(
+      mainTitle: "EVA HOME PAGE",
+      sizeOfText: 50,
+    );
   }
 
-  Widget widgetLogoutButton(BuildContext context) {
-    return widgetNavigationIconButton(Icons.logout, "Logout", context);
+  WidgetNavigationIconButton widgetLogoutButton(BuildContext context) {
+    return WidgetNavigationIconButton(
+        icon: Icons.logout, hintText: "Logout", materialPageRoute: context);
   }
 
-  Widget widgetCommandInputField() {
-    SizedBox inputSizedBox = widgetSizedBox(widgetTextField("Question", true,
-        false, ((value) => question = value), TextInputType.text));
+  WidgetSizedBox widgetCommandInputField() {
+    Function(String) inputChanged = ((value) => question = value);
+    WidgetSizedBox inputSizedBox = WidgetSizedBox(
+        childElement: WidgetTextField(
+      defaultText: "Question",
+      shownHinttext: "Question",
+      enabled: true,
+      obscureText: false,
+      onChanged: inputChanged,
+      typeOfInput: TextInputType.text,
+    ));
     return inputSizedBox;
   }
 
-  Widget widgetSendCommandButton() {
-    return widgetActionIconButton(
-        Icons.send,
-        "Send question",
-        () => {
-              _evaApi.checkCommand(question).then((value) => {
-                    response = value,
-                    _chatHistory.add([question, value]),
-                    _state.setState(() {})
-                  }),
-            });
+  WidgetActionIconButton widgetSendCommandButton() {
+    return WidgetActionIconButton(
+      icon: Icons.send,
+      hintText: "Send question",
+      action: () => {
+        _evaApi.checkCommand(question).then((value) => {
+              response = value,
+              _chatHistory.add([question, value]),
+              _state.setState(() {})
+            })
+      },
+    );
   }
 
-  Widget widgetTestButton() {
-    return widgetActionIconButton(Icons.question_mark, "Test button",
-        () => debugPrint("Hi i am a test button"));
+  WidgetActionIconButton widgetTestButton() {
+    return WidgetActionIconButton(
+        icon: Icons.question_mark,
+        hintText: "Test button",
+        action: () => debugPrint("Hi i am a test button"));
   }
 
-  Widget widgetChatHistory() {
+  Column widgetChatHistory() {
     return Column(
       children: [
         Align(
@@ -65,7 +80,7 @@ class EvaHomePageWidgets extends EvaBaseWidgets {
     );
   }
 
-  Widget widgetChatHistoryListView() {
+  ListView widgetChatHistoryListView() {
     return ListView.builder(
       itemCount: _chatHistory.length,
       itemBuilder: (context, index) {

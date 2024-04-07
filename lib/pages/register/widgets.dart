@@ -1,8 +1,8 @@
-import 'package:eva_app/utilities/app_actions.dart';
+import 'package:eva_app/app_utilities/eva_specific/eva_utilities/eva_actions.dart';
 import 'package:flutter/material.dart';
-import 'package:eva_app/utilities/app_widgets.dart';
+import 'package:eva_app/app_utilities/eva_specific/eva_widgets/all_eva_widgets.dart';
 
-class EvaRegisterPageWidgets extends EvaBaseWidgets {
+class EvaRegisterPageWidgets {
   late EvaActions _evaAction;
   String registerUsername = "";
   String registerPassword = "";
@@ -11,34 +11,60 @@ class EvaRegisterPageWidgets extends EvaBaseWidgets {
     _evaAction = EvaActions();
   }
 
-  Widget widgetPageTitle() {
-    return widgetMainTitle("EVA REGISTER PAGE", 50);
+  WidgetMainTitle widgetPageTitle() {
+    return const WidgetMainTitle(
+        mainTitle: "EVA REGISTER PAGE", sizeOfText: 50);
   }
 
-  Widget widgetLogoutButton(BuildContext context) {
-    return widgetActionIconButton(
-        Icons.logout, "Logout", () => _evaAction.navigateTo(context));
+  WidgetActionIconButton widgetLogoutButton(BuildContext context) {
+    return WidgetActionIconButton(
+      icon: Icons.logout,
+      hintText: "Logout",
+      action: () => _evaAction.navigateTo(context),
+    );
   }
 
-  Widget widgetRegisterUsernameField() {
-    return widgetSizedBox(widgetTextField("Username", true, false, (value) {
-      registerUsername = value;
-    }, TextInputType.text));
+  WidgetSizedBox widgetRegisterUsernameField() {
+    return WidgetSizedBox(
+      childElement: WidgetTextField(
+          shownHinttext: "Username",
+          defaultText: "Username",
+          enabled: true,
+          obscureText: false,
+          onChanged: (value) {
+            registerUsername = value;
+          },
+          typeOfInput: TextInputType.text),
+    );
   }
 
-  Widget widgetRegisterPasswordField() {
-    return widgetSizedBox(widgetTextField("Password", true, false, (value) {
-      registerPassword = value;
-    }, TextInputType.text));
+  WidgetSizedBox widgetRegisterPasswordField() {
+    return WidgetSizedBox(
+      childElement: WidgetTextField(
+          shownHinttext: "Password",
+          defaultText: "Password",
+          enabled: true,
+          obscureText: false,
+          onChanged: (value) {
+            registerPassword = value;
+          },
+          typeOfInput: TextInputType.text),
+    );
   }
 
-  Widget widgetSaveRegistrationButton() {
-    return widgetActionIconButton(
-        Icons.save, "Register", () => debugPrint("Registration is done"));
+  WidgetActionIconButton widgetSaveRegistrationButton() {
+    return WidgetActionIconButton(
+      icon: Icons.save,
+      hintText: "Register",
+      action: () => debugPrint("Registration is done"),
+    );
   }
 
-  Widget widgetResetRegistrationButton() {
-    return widgetActionIconButton(Icons.restore_page, "Reset registration form",
-        () => debugPrint("Registration form is reset"));
+  WidgetActionIconButton widgetResetRegistrationButton() {
+    return WidgetActionIconButton(
+      icon: Icons.restore_page,
+      hintText: "Reset registration form",
+      action: () => debugPrint("Registration form is reset"),
+    );
   }
 }

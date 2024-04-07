@@ -1,33 +1,31 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:eva_app/utilities/app_api.dart';
-import 'package:eva_app/utilities/app_values.dart';
-import 'package:eva_app/utilities/app_widgets.dart';
+import 'package:eva_app/app_utilities/eva_specific/eva_utilities/eva_api.dart';
+import 'package:eva_app/app_utilities/eva_specific/eva_utilities/eva_values.dart';
+import 'package:eva_app/app_utilities/eva_specific/eva_widgets/all_eva_widgets.dart';
 
-class EvaSettingsPageWidgets extends EvaBaseWidgets {
-  late EvaAppValues _evaAppValues;
-  late EvaApi _evaApi;
-  late bool apiState;
+class EvaSettingsPageWidgets {
+  final EvaAppValues _evaAppValues = EvaAppValues();
+  final EvaApi _evaApi = EvaApi();
+  bool apiState = false;
   late State _state;
   String serverURL = "";
   String serverPort = "";
   late Directory folderContent;
   late List<FileSystemEntity> files;
+  List<DropdownMenuItem<dynamic>> languagesMenuItems = [];
+  late String selectedLanguage;
 
-  EvaSettingsPageWidgets(State state) {
-    _state = state;
-    apiState = false;
-    _evaAppValues = EvaAppValues();
-    _evaApi = EvaApi();
+  EvaSettingsPageWidgets() {
     folderContent = Directory("translations");
     files = folderContent.listSync();
   }
 
-  Widget widgetPageTitle() {
-    return widgetMainTitle("EVA SETTINGS", 50);
+  WidgetMainTitle widgetPageTitle() {
+    return const WidgetMainTitle(mainTitle: "EVA SETTINGS", sizeOfText: 50);
   }
 
-  Widget widgetServerURLField() {
+  FutureBuilder<String?> widgetServerURLField() {
     return FutureBuilder<String?>(
       future: _evaAppValues.getServerUrl(),
       builder: (context, AsyncSnapshot<String?> snapshot) {
@@ -36,17 +34,24 @@ class EvaSettingsPageWidgets extends EvaBaseWidgets {
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
-          SizedBox serverURLSizedBox =
-              widgetSizedBox(super.widgetTextField("url", true, false, (value) {
-            serverURL = value;
-          }, TextInputType.number, snapshot.data ?? ""));
+          WidgetSizedBox serverURLSizedBox = WidgetSizedBox(
+            childElement: WidgetTextField(
+                defaultText: "url",
+                enabled: true,
+                obscureText: false,
+                onChanged: (value) {
+                  serverURL = value;
+                },
+                typeOfInput: TextInputType.number,
+                shownHinttext: serverURL),
+          );
           return serverURLSizedBox;
         }
       },
     );
   }
 
-  Widget widgetServerPortField() {
+  FutureBuilder<String?> widgetServerPortField() {
     return FutureBuilder<String?>(
       future: _evaAppValues.getServerPort(),
       builder: (context, AsyncSnapshot<String?> snapshot) {
@@ -55,20 +60,29 @@ class EvaSettingsPageWidgets extends EvaBaseWidgets {
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
-          SizedBox serverPortSizedBox = widgetSizedBox(
-              super.widgetTextField("port", true, false, (value) {
-            serverPort = value;
-          }, TextInputType.number, snapshot.data ?? ""));
+          WidgetSizedBox serverPortSizedBox = WidgetSizedBox(
+              childElement: WidgetTextField(
+                  shownHinttext: "port",
+                  enabled: true,
+                  obscureText: false,
+                  onChanged: (value) {
+                    serverPort = value;
+                  },
+                  typeOfInput: TextInputType.number,
+                  defaultText: serverPort));
           return serverPortSizedBox;
         }
       },
     );
   }
 
-  Widget widgetTestSettingsButton() {
-    return widgetActionIconButton(Icons.save_alt, "Test new settings", () {
-      _updateApiState(serverURL, serverPort);
-    });
+  WidgetActionIconButton widgetTestSettingsButton() {
+    return WidgetActionIconButton(
+        icon: Icons.save_alt,
+        hintText: "Test new settings",
+        action: () {
+          _updateApiState(serverURL, serverPort);
+        });
   }
 
   _updateApiState(newServerUrl, newServerPort) async {
@@ -78,33 +92,40 @@ class EvaSettingsPageWidgets extends EvaBaseWidgets {
     });
   }
 
-  Widget widgetSaveSettingsButton() {
-    return widgetActionIconButton(Icons.save, "Save settings", () {
-      _evaAppValues.setServerPort(serverPort);
-      _evaAppValues.setServerUrl(serverURL);
-      _evaAppValues.setDefaultLanguage(selectedLanguage);
-    });
+  WidgetActionIconButton widgetSaveSettingsButton() {
+    return WidgetActionIconButton(
+        icon: Icons.save,
+        hintText: "Save settings",
+        action: () {
+          _evaAppValues.setServerPort(serverPort);
+          _evaAppValues.setServerUrl(serverURL);
+          _evaAppValues.setDefaultLanguage(selectedLanguage);
+        });
   }
 
-  Widget widgetResetSettingsButton() {
-    return widgetActionIconButton(Icons.restore_page, "Reset settings", () {
-      _evaAppValues.resetPreferences();
-      _state.setState(() {});
-    });
+  WidgetActionIconButton widgetResetSettingsButton() {
+    return WidgetActionIconButton(
+        icon: Icons.restore_page,
+        hintText: "Reset settings",
+        action: () {
+          _evaAppValues.resetPreferences();
+          _state.setState(() {});
+        });
   }
 
-  Widget widgetCancelButton(BuildContext context) {
-    return widgetNavigationIconButton(Icons.cancel, "Cancel", context);
+  WidgetNavigationIconButton widgetCancelButton(BuildContext context) {
+    return WidgetNavigationIconButton(
+        icon: Icons.cancel, hintText: "Cancel", materialPageRoute: context);
   }
 
-  Widget widgetApiStateIcon() {
+  Icon widgetApiStateIcon() {
     Icon apiStateIcon = apiState.toString() == "true"
-        ? widgetIcon(Icons.radio_button_checked)
-        : widgetIcon(Icons.radio_button_unchecked);
+        ? const Icon(Icons.radio_button_checked)
+        : const Icon(Icons.radio_button_unchecked);
     return apiStateIcon;
   }
 
-  widgetAvailableLanguagesDropDown() {
+  DropdownButton widgetAvailableLanguagesDropDown() {
     for (final FileSystemEntity file in files) {
       String fileName =
           file.path.replaceAll("translations/", "").replaceAll(".json", "");
@@ -112,11 +133,23 @@ class EvaSettingsPageWidgets extends EvaBaseWidgets {
         value: fileName,
         child: Text(fileName),
       );
-      languagesMenuItem.add(languageItem);
+      languagesMenuItems.add(languageItem);
     }
     return DropdownButton(
-      items: languagesMenuItem,
+      items: languagesMenuItems,
       onChanged: (value) => selectedLanguage = value,
     );
+  }
+
+  WidgetTextLable widgetServerUrlLable() {
+    return const WidgetTextLable(text: "Server IP/URL");
+  }
+
+  WidgetTextLable widgetServerPortLable() {
+    return const WidgetTextLable(text: "Server Port");
+  }
+
+  WidgetTextLable widgetLanguageLable() {
+    return const WidgetTextLable(text: "Language");
   }
 }

@@ -1,11 +1,11 @@
 import 'package:eva_app/pages/home/homepage.dart';
 import 'package:flutter/material.dart';
-import 'package:eva_app/utilities/app_actions.dart';
-import 'package:eva_app/utilities/app_widgets.dart';
+import 'package:eva_app/app_utilities/eva_specific/eva_utilities/eva_actions.dart';
+import 'package:eva_app/app_utilities/eva_specific/eva_widgets/all_eva_widgets.dart';
 import 'package:eva_app/pages/register/registerpage.dart';
 import 'package:eva_app/pages/settings/settingspage.dart';
 
-class EvaLoginPageWidgets extends EvaBaseWidgets {
+class EvaLoginPageWidgets {
   late EvaActions _evaAction;
   String username = "";
   String password = "";
@@ -14,41 +14,55 @@ class EvaLoginPageWidgets extends EvaBaseWidgets {
     _evaAction = EvaActions();
   }
 
-  Widget widgetLoginButton(BuildContext context) {
-    return widgetActionIconButton(Icons.login, "Login",
-        () => _evaAction.navigateTo(context, const HomePage()));
+  WidgetActionIconButton widgetLoginButton(BuildContext context) {
+    return WidgetActionIconButton(
+        icon: Icons.login,
+        hintText: "Login",
+        action: () => _evaAction.navigateTo(context, const HomePage()));
   }
 
-  Widget widgetRegisterButton(BuildContext context) {
-    return widgetActionIconButton(Icons.app_registration, "Register",
-        () => _evaAction.navigateTo(context, const RegisterPage()));
+  WidgetActionIconButton widgetRegisterButton(BuildContext context) {
+    return WidgetActionIconButton(
+        icon: Icons.app_registration,
+        hintText: "Register",
+        action: () => _evaAction.navigateTo(context, const RegisterPage()));
   }
 
-  Widget widgetSettingsButton(BuildContext context) {
-    return widgetActionIconButton(
-        Icons.settings,
-        "Settings",
-        () => {
+  WidgetActionIconButton widgetSettingsButton(BuildContext context) {
+    return WidgetActionIconButton(
+        icon: Icons.settings,
+        hintText: "Settings",
+        action: () => {
               _evaAction.navigateTo(context, const SettingsPage()),
             });
   }
 
-  Widget widgetPageTitle() {
-    return widgetMainTitle("EVA APP", 50);
+  WidgetMainTitle widgetPageTitle() {
+    return const WidgetMainTitle(mainTitle: "EVA APP", sizeOfText: 50);
   }
 
-  SizedBox widgetServerUsernameField() {
-    return widgetSizedBox(widgetTextField(
-      "Username",
-      true,
-      false,
-      ((value) => username = value),
-      TextInputType.text,
-    ));
+  WidgetSizedBox widgetServerUsernameField() {
+    return WidgetSizedBox(
+      childElement: WidgetTextField(
+        shownHinttext: "Username",
+        defaultText: "Username",
+        enabled: true,
+        obscureText: false,
+        onChanged: ((value) => username = value),
+        typeOfInput: TextInputType.text,
+      ),
+    );
   }
 
-  SizedBox widgetServerPasswordField() {
-    return widgetSizedBox(widgetTextField("Password", true, true,
-        ((value) => password = value), TextInputType.visiblePassword));
+  WidgetSizedBox widgetServerPasswordField() {
+    return WidgetSizedBox(
+      childElement: WidgetTextField(
+          shownHinttext: "Password",
+          defaultText: "Password",
+          enabled: true,
+          obscureText: true,
+          onChanged: ((value) => password = value),
+          typeOfInput: TextInputType.visiblePassword),
+    );
   }
 }

@@ -14,7 +14,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   void initState() {
     super.initState();
-    _evaSettingsPageWidget = EvaSettingsPageWidgets(this);
+    _evaSettingsPageWidget = EvaSettingsPageWidgets();
   }
 
   @override
@@ -33,17 +33,17 @@ class _SettingsPageState extends State<SettingsPage> {
               children: [_evaSettingsPageWidget.widgetPageTitle()],
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              _evaSettingsPageWidget.widgetTextLable("Server IP/URL"),
+              _evaSettingsPageWidget.widgetServerUrlLable(),
               _evaSettingsPageWidget.widgetServerURLField()
             ]),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              _evaSettingsPageWidget.widgetTextLable("Server port"),
+              _evaSettingsPageWidget.widgetServerUrlLable(),
               _evaSettingsPageWidget.widgetServerPortField()
             ]),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _evaSettingsPageWidget.widgetTextLable("Language"),
+                _evaSettingsPageWidget.widgetLanguageLable(),
                 _evaSettingsPageWidget.widgetAvailableLanguagesDropDown()
               ],
             ),
