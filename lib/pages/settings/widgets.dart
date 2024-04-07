@@ -1,10 +1,12 @@
 import 'dart:io';
+import 'package:eva_app/app_utilities/eva_specific/eva_utilities/eva_actions.dart';
 import 'package:flutter/material.dart';
 import 'package:eva_app/app_utilities/eva_specific/eva_utilities/eva_api.dart';
 import 'package:eva_app/app_utilities/eva_specific/eva_utilities/eva_values.dart';
 import 'package:eva_app/app_utilities/eva_specific/eva_widgets/all_eva_widgets.dart';
 
 class EvaSettingsPageWidgets {
+  final EvaActions evaActions = EvaActions();
   final EvaAppValues _evaAppValues = EvaAppValues();
   final EvaApi _evaApi = EvaApi();
   bool apiState = false;
@@ -22,7 +24,10 @@ class EvaSettingsPageWidgets {
   }
 
   WidgetMainTitle widgetPageTitle() {
-    return const WidgetMainTitle(mainTitle: "EVA SETTINGS", sizeOfText: 50);
+    return const WidgetMainTitle(
+      mainTitle: "EVA SETTINGS",
+      sizeOfText: 50,
+    );
   }
 
   FutureBuilder<String?> widgetServerURLField() {
@@ -36,14 +41,15 @@ class EvaSettingsPageWidgets {
         } else {
           WidgetSizedBox serverURLSizedBox = WidgetSizedBox(
             childElement: WidgetTextField(
-                defaultText: "url",
-                enabled: true,
-                obscureText: false,
-                onChanged: (value) {
-                  serverURL = value;
-                },
-                typeOfInput: TextInputType.number,
-                shownHinttext: serverURL),
+              defaultText: "url",
+              enabled: true,
+              obscureText: false,
+              onChanged: (value) {
+                serverURL = value;
+              },
+              typeOfInput: TextInputType.number,
+              shownHinttext: serverURL,
+            ),
           );
           return serverURLSizedBox;
         }
@@ -61,15 +67,17 @@ class EvaSettingsPageWidgets {
           return Text('Error: ${snapshot.error}');
         } else {
           WidgetSizedBox serverPortSizedBox = WidgetSizedBox(
-              childElement: WidgetTextField(
-                  shownHinttext: "port",
-                  enabled: true,
-                  obscureText: false,
-                  onChanged: (value) {
-                    serverPort = value;
-                  },
-                  typeOfInput: TextInputType.number,
-                  defaultText: serverPort));
+            childElement: WidgetTextField(
+              shownHinttext: "port",
+              enabled: true,
+              obscureText: false,
+              onChanged: (value) {
+                serverPort = value;
+              },
+              typeOfInput: TextInputType.number,
+              defaultText: serverPort,
+            ),
+          );
           return serverPortSizedBox;
         }
       },
@@ -81,41 +89,54 @@ class EvaSettingsPageWidgets {
         icon: Icons.save_alt,
         hintText: "Test new settings",
         action: () {
-          _updateApiState(serverURL, serverPort);
+          _updateApiState(
+            serverURL,
+            serverPort,
+          );
         });
   }
 
   _updateApiState(newServerUrl, newServerPort) async {
-    bool updatedApiState = await _evaApi.testApi(newServerUrl, newServerPort);
-    _state.setState(() {
-      apiState = updatedApiState;
-    });
+    bool updatedApiState = await _evaApi.testApi(
+      newServerUrl,
+      newServerPort,
+    );
+    _state.setState(
+      () {
+        apiState = updatedApiState;
+      },
+    );
   }
 
   WidgetActionIconButton widgetSaveSettingsButton() {
     return WidgetActionIconButton(
-        icon: Icons.save,
-        hintText: "Save settings",
-        action: () {
-          _evaAppValues.setServerPort(serverPort);
-          _evaAppValues.setServerUrl(serverURL);
-          _evaAppValues.setDefaultLanguage(selectedLanguage);
-        });
+      icon: Icons.save,
+      hintText: "Save settings",
+      action: () {
+        _evaAppValues.setServerPort(serverPort);
+        _evaAppValues.setServerUrl(serverURL);
+        _evaAppValues.setDefaultLanguage(selectedLanguage);
+      },
+    );
   }
 
   WidgetActionIconButton widgetResetSettingsButton() {
     return WidgetActionIconButton(
-        icon: Icons.restore_page,
-        hintText: "Reset settings",
-        action: () {
-          _evaAppValues.resetPreferences();
-          _state.setState(() {});
-        });
+      icon: Icons.restore_page,
+      hintText: "Reset settings",
+      action: () {
+        _evaAppValues.resetPreferences();
+        _state.setState(() {});
+      },
+    );
   }
 
-  WidgetNavigationIconButton widgetCancelButton(BuildContext context) {
-    return WidgetNavigationIconButton(
-        icon: Icons.cancel, hintText: "Cancel", materialPageRoute: context);
+  WidgetActionIconButton widgetCancelButton(BuildContext context) {
+    return WidgetActionIconButton(
+      icon: Icons.cancel,
+      hintText: "Cancel",
+      action: () => evaActions.navigateTo(context),
+    );
   }
 
   Icon widgetApiStateIcon() {

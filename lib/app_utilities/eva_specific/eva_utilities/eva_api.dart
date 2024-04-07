@@ -15,8 +15,13 @@ class EvaApi {
   EvaApi() {
     _evaAppValues = EvaAppValues();
     _evaAction = EvaActions();
-    _evaAppValues.getServerPort().then((value) => apiPort = int.parse(value));
-    _evaAppValues.getServerUrl().then((value) => apiUrl = value);
+    _evaAppValues.getServerPort().then((value) {
+      apiPort = int.parse(value);
+    });
+    _evaAppValues.getServerUrl().then((value) {
+      print("ServerUrl $value");
+      apiUrl = value;
+    });
     uriHeader = {'Content-Type': 'application/json'};
   }
 
@@ -35,16 +40,21 @@ class EvaApi {
   }
 
   Future<String> checkCommand(String command) {
-    var data = jsonEncode({
-      'token': 'UNKNOWN',
-      'OSType': Platform.operatingSystem,
-      'command': command
-    });
-    return Future.delayed(const Duration(seconds: 2), () async {
-      Response apiRepsonse = await _postRequest("/api/ai/check", data);
-      String answer = jsonDecode(apiRepsonse.body)["answer"];
-      return answer;
-    });
+    var data = jsonEncode(
+      {
+        'token': 'UNKNOWN',
+        'OSType': Platform.operatingSystem,
+        'command': command
+      },
+    );
+    return Future.delayed(
+      const Duration(seconds: 2),
+      () async {
+        Response apiRepsonse = await _postRequest("/api/ai/check", data);
+        String answer = jsonDecode(apiRepsonse.body)["answer"];
+        return answer;
+      },
+    );
   }
 
   Future<Response> _postRequest(endpoint, data) async {

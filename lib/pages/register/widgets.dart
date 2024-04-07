@@ -3,13 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:eva_app/app_utilities/eva_specific/eva_widgets/all_eva_widgets.dart';
 
 class EvaRegisterPageWidgets {
-  late EvaActions _evaAction;
+  late EvaActions evaActions = EvaActions();
   String registerUsername = "";
   String registerPassword = "";
-
-  EvaRegisterPageWidgets() {
-    _evaAction = EvaActions();
-  }
 
   WidgetMainTitle widgetPageTitle() {
     return const WidgetMainTitle(
@@ -20,35 +16,37 @@ class EvaRegisterPageWidgets {
     return WidgetActionIconButton(
       icon: Icons.logout,
       hintText: "Logout",
-      action: () => _evaAction.navigateTo(context),
+      action: () => evaActions.navigateTo(context),
     );
   }
 
   WidgetSizedBox widgetRegisterUsernameField() {
     return WidgetSizedBox(
       childElement: WidgetTextField(
-          shownHinttext: "Username",
-          defaultText: "Username",
-          enabled: true,
-          obscureText: false,
-          onChanged: (value) {
-            registerUsername = value;
-          },
-          typeOfInput: TextInputType.text),
+        shownHinttext: "Username",
+        defaultText: "Username",
+        enabled: true,
+        obscureText: false,
+        onChanged: (value) {
+          registerUsername = value;
+        },
+        typeOfInput: TextInputType.text,
+      ),
     );
   }
 
   WidgetSizedBox widgetRegisterPasswordField() {
     return WidgetSizedBox(
       childElement: WidgetTextField(
-          shownHinttext: "Password",
-          defaultText: "Password",
-          enabled: true,
-          obscureText: false,
-          onChanged: (value) {
-            registerPassword = value;
-          },
-          typeOfInput: TextInputType.text),
+        shownHinttext: "Password",
+        defaultText: "Password",
+        enabled: true,
+        obscureText: false,
+        onChanged: (value) {
+          registerPassword = value;
+        },
+        typeOfInput: TextInputType.text,
+      ),
     );
   }
 

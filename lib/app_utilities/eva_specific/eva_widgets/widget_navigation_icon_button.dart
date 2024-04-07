@@ -16,19 +16,20 @@ class WidgetNavigationIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final EvaActions evaAction = EvaActions();
     return FutureBuilder(
-        future: EvaTranslations.findTranslation(hintText),
-        builder: (context, AsyncSnapshot<String?> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
-          } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          } else {
-            return IconButton(
-                icon: Icon(icon),
-                tooltip: snapshot.data,
-                onPressed: () =>
-                    evaAction.navigateTo(context, materialPageRoute));
-          }
-        });
+      future: EvaTranslations.findTranslation(hintText),
+      builder: (context, AsyncSnapshot<String?> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else {
+          return IconButton(
+            icon: Icon(icon),
+            tooltip: snapshot.data,
+            onPressed: () => evaAction.navigateTo(context, materialPageRoute),
+          );
+        }
+      },
+    );
   }
 }

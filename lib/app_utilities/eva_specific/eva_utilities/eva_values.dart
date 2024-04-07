@@ -18,12 +18,12 @@ class EvaAppValues {
 
   Future<String> getServerUrl() async {
     SharedPreferences sharedPref = await SharedPreferences.getInstance();
-    return sharedPref.getString("server_url") ?? "";
+    return sharedPref.getString("server_url") ?? "localhost";
   }
 
   Future<String> getServerPort() async {
     SharedPreferences sharedPref = await SharedPreferences.getInstance();
-    return sharedPref.getString("server_port") ?? "";
+    return sharedPref.getString("server_port") ?? "9999";
   }
 
   Future<String> getDefaultLanguage() async {

@@ -32,26 +32,53 @@ class BaseApi {
   }
 
   postRequest(String endpoint, [Map<String, dynamic>? queryParam]) async {
-    return await post(_getUri(endpoint), body: jsonEncode(queryParam))
-        .then((value) => _handleResponse(value))
-        .onError((error, stackTrace) => debugPrint(error.toString()));
+    return await post(
+      _getUri(endpoint),
+      body: jsonEncode(queryParam),
+    )
+        .then(
+          (value) => _handleResponse(value),
+        )
+        .onError(
+          (error, stackTrace) => debugPrint(
+            error.toString(),
+          ),
+        );
   }
 
   getRequest(String endpoint, [Map<String, dynamic>? queryParam]) async {
     return await get(_getUri(endpoint, queryParam))
-        .then((value) => _handleResponse(value))
-        .onError((error, stackTrace) => debugPrint(error.toString()));
+        .then(
+          (value) => _handleResponse(value),
+        )
+        .onError(
+          (error, stackTrace) => debugPrint(
+            error.toString(),
+          ),
+        );
   }
 
   putRequest(String endpoint, Map<String, dynamic> queryParam) async {
     return await put(_getUri(endpoint), body: jsonEncode(queryParam))
-        .then((value) => _handleResponse(value))
-        .onError((error, stackTrace) => debugPrint(error.toString()));
+        .then(
+          (value) => _handleResponse(value),
+        )
+        .onError(
+          (error, stackTrace) => debugPrint(
+            error.toString(),
+          ),
+        );
   }
 
   patchRequest(String endpoint, Map<String, dynamic> queryParam) async {
     return await patch(_getUri(endpoint), body: jsonEncode(queryParam))
-        .then((value) => _handleResponse(value))
-        .onError((error, stackTrace) => debugPrint(error.toString()));
+        .then(
+          (value) => _handleResponse(value),
+        )
+        .onError(
+          (error, stackTrace) => debugPrint(
+            error.toString(),
+          ),
+        );
   }
 }

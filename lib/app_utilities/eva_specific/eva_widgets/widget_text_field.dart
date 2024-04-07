@@ -9,7 +9,7 @@ class WidgetTextField extends StatefulWidget {
   final TextInputType typeOfInput;
   final String defaultText;
 
-  WidgetTextField(
+  const WidgetTextField(
       {super.key,
       required this.shownHinttext,
       required this.enabled,

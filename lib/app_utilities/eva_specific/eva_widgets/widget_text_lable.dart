@@ -11,12 +11,13 @@ class WidgetTextLable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: EvaTranslations.findTranslation(text),
-        builder: (context, AsyncSnapshot<String?> snapshot) {
-          return Text(
-            snapshot.data.toString(),
-            style: const TextStyle(fontSize: 20),
-          );
-        });
+      future: EvaTranslations.findTranslation(text),
+      builder: (context, AsyncSnapshot<String?> snapshot) {
+        return Text(
+          snapshot.data.toString(),
+          style: const TextStyle(fontSize: 20),
+        );
+      },
+    );
   }
 }

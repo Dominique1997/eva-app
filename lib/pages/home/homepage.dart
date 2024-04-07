@@ -25,14 +25,19 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [_evaHomePageWidget.widgetPageTitle()]),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _evaHomePageWidget.widgetPageTitle(),
+            ],
+          ),
           Expanded(
             child: _evaHomePageWidget.widgetChatHistoryListView(),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [_evaHomePageWidget.widgetCommandInputField()],
+            children: [
+              _evaHomePageWidget.widgetCommandInputField(),
+            ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

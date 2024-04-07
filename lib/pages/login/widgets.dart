@@ -16,16 +16,24 @@ class EvaLoginPageWidgets {
 
   WidgetActionIconButton widgetLoginButton(BuildContext context) {
     return WidgetActionIconButton(
-        icon: Icons.login,
-        hintText: "Login",
-        action: () => _evaAction.navigateTo(context, const HomePage()));
+      icon: Icons.login,
+      hintText: "Login",
+      action: () => _evaAction.navigateTo(
+        context,
+        const HomePage(),
+      ),
+    );
   }
 
   WidgetActionIconButton widgetRegisterButton(BuildContext context) {
     return WidgetActionIconButton(
-        icon: Icons.app_registration,
-        hintText: "Register",
-        action: () => _evaAction.navigateTo(context, const RegisterPage()));
+      icon: Icons.app_registration,
+      hintText: "Register",
+      action: () => _evaAction.navigateTo(
+        context,
+        const RegisterPage(),
+      ),
+    );
   }
 
   WidgetActionIconButton widgetSettingsButton(BuildContext context) {
@@ -33,12 +41,18 @@ class EvaLoginPageWidgets {
         icon: Icons.settings,
         hintText: "Settings",
         action: () => {
-              _evaAction.navigateTo(context, const SettingsPage()),
+              _evaAction.navigateTo(
+                context,
+                const SettingsPage(),
+              ),
             });
   }
 
   WidgetMainTitle widgetPageTitle() {
-    return const WidgetMainTitle(mainTitle: "EVA APP", sizeOfText: 50);
+    return const WidgetMainTitle(
+      mainTitle: "EVA APP",
+      sizeOfText: 50,
+    );
   }
 
   WidgetSizedBox widgetServerUsernameField() {

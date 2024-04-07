@@ -1,3 +1,4 @@
+import 'package:eva_app/app_utilities/eva_specific/eva_utilities/eva_actions.dart';
 import 'package:flutter/material.dart';
 import 'package:eva_app/app_utilities/eva_specific/eva_widgets/all_eva_widgets.dart';
 import 'package:eva_app/app_utilities/eva_specific/eva_utilities/eva_api.dart';
@@ -5,6 +6,7 @@ import 'package:eva_app/app_utilities/eva_specific/eva_utilities/eva_api.dart';
 class EvaHomePageWidgets {
   String question = "";
   String response = "";
+  final EvaActions evaActions = EvaActions();
   late EvaApi _evaApi;
   late State _state;
   late List _chatHistory;
@@ -22,22 +24,26 @@ class EvaHomePageWidgets {
     );
   }
 
-  WidgetNavigationIconButton widgetLogoutButton(BuildContext context) {
-    return WidgetNavigationIconButton(
-        icon: Icons.logout, hintText: "Logout", materialPageRoute: context);
+  WidgetActionIconButton widgetLogoutButton(BuildContext context) {
+    return WidgetActionIconButton(
+      icon: Icons.logout,
+      hintText: "Logout",
+      action: () => evaActions.navigateTo(context),
+    );
   }
 
   WidgetSizedBox widgetCommandInputField() {
     Function(String) inputChanged = ((value) => question = value);
     WidgetSizedBox inputSizedBox = WidgetSizedBox(
-        childElement: WidgetTextField(
-      defaultText: "Question",
-      shownHinttext: "Question",
-      enabled: true,
-      obscureText: false,
-      onChanged: inputChanged,
-      typeOfInput: TextInputType.text,
-    ));
+      childElement: WidgetTextField(
+        defaultText: "Question",
+        shownHinttext: "Question",
+        enabled: true,
+        obscureText: false,
+        onChanged: inputChanged,
+        typeOfInput: TextInputType.text,
+      ),
+    );
     return inputSizedBox;
   }
 
@@ -57,9 +63,10 @@ class EvaHomePageWidgets {
 
   WidgetActionIconButton widgetTestButton() {
     return WidgetActionIconButton(
-        icon: Icons.question_mark,
-        hintText: "Test button",
-        action: () => debugPrint("Hi i am a test button"));
+      icon: Icons.question_mark,
+      hintText: "Test button",
+      action: () => debugPrint("Hi i am a test button"),
+    );
   }
 
   Column widgetChatHistory() {
@@ -74,7 +81,10 @@ class EvaHomePageWidgets {
         ),
         Align(
           alignment: Alignment.bottomRight,
-          child: Text("AI: $response", style: const TextStyle(fontSize: 20)),
+          child: Text(
+            "AI: $response",
+            style: const TextStyle(fontSize: 20),
+          ),
         ),
       ],
     );

@@ -15,33 +15,36 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [_evaRegisterPageWidget.widgetPageTitle()],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _evaRegisterPageWidget.widgetRegisterUsernameField(),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _evaRegisterPageWidget.widgetRegisterPasswordField(),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _evaRegisterPageWidget.widgetSaveRegistrationButton(),
-              _evaRegisterPageWidget.widgetLogoutButton(context),
-            ],
-          )
-        ])));
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [_evaRegisterPageWidget.widgetPageTitle()],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _evaRegisterPageWidget.widgetRegisterUsernameField(),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _evaRegisterPageWidget.widgetRegisterPasswordField(),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _evaRegisterPageWidget.widgetSaveRegistrationButton(),
+                _evaRegisterPageWidget.widgetLogoutButton(context),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
