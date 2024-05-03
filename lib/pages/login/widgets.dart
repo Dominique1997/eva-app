@@ -59,7 +59,7 @@ class EvaLoginPageWidgets {
     return WidgetSizedBox(
       childElement: WidgetTextField(
         shownHinttext: "Username",
-        defaultText: "Username",
+        defaultText: "",
         enabled: true,
         obscureText: false,
         onChanged: ((value) => username = value),
@@ -72,7 +72,7 @@ class EvaLoginPageWidgets {
     return WidgetSizedBox(
       childElement: WidgetTextField(
           shownHinttext: "Password",
-          defaultText: "Password",
+          defaultText: "",
           enabled: true,
           obscureText: true,
           onChanged: ((value) => password = value),

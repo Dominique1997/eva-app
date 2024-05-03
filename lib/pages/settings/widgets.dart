@@ -10,7 +10,6 @@ class EvaSettingsPageWidgets {
   final EvaAppValues _evaAppValues = EvaAppValues();
   final EvaApi _evaApi = EvaApi();
   bool apiState = false;
-  late State _state;
   String serverURL = "";
   String serverPort = "";
   late Directory folderContent;
@@ -41,14 +40,14 @@ class EvaSettingsPageWidgets {
         } else {
           WidgetSizedBox serverURLSizedBox = WidgetSizedBox(
             childElement: WidgetTextField(
-              defaultText: "url",
+              defaultText: "",
               enabled: true,
               obscureText: false,
               onChanged: (value) {
                 serverURL = value;
               },
               typeOfInput: TextInputType.number,
-              shownHinttext: serverURL,
+              shownHinttext: "url",
             ),
           );
           return serverURLSizedBox;
@@ -97,15 +96,12 @@ class EvaSettingsPageWidgets {
   }
 
   _updateApiState(newServerUrl, newServerPort) async {
-    bool updatedApiState = await _evaApi.testApi(
+    debugPrint("$newServerPort $newServerUrl");
+    bool test_state = await _evaApi.testApi(
       newServerUrl,
       newServerPort,
     );
-    _state.setState(
-      () {
-        apiState = updatedApiState;
-      },
-    );
+    apiState = test_state;
   }
 
   WidgetActionIconButton widgetSaveSettingsButton() {
@@ -126,7 +122,6 @@ class EvaSettingsPageWidgets {
       hintText: "Reset settings",
       action: () {
         _evaAppValues.resetPreferences();
-        _state.setState(() {});
       },
     );
   }
@@ -139,18 +134,23 @@ class EvaSettingsPageWidgets {
     );
   }
 
-  Icon widgetApiStateIcon() {
-    Icon apiStateIcon = apiState.toString() == "true"
-        ? const Icon(Icons.radio_button_checked)
-        : const Icon(Icons.radio_button_unchecked);
-    return apiStateIcon;
+  WidgetStateIcon widgetApiStateIcon() {
+    return apiState.toString() == "true"
+        ? WidgetStateIcon(
+            iconData: Icons.circle,
+            iconColor: Colors.green,
+          )
+        : WidgetStateIcon(
+            iconData: Icons.circle,
+            iconColor: Colors.red,
+          );
   }
 
   DropdownButton widgetAvailableLanguagesDropDown() {
     for (final FileSystemEntity file in files) {
       String fileName =
           file.path.replaceAll("translations/", "").replaceAll(".json", "");
-      DropdownMenuItem languageItem = DropdownMenuItem(
+      DropdownMenuItem<String> languageItem = DropdownMenuItem(
         value: fileName,
         child: Text(fileName),
       );

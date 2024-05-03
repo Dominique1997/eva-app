@@ -24,7 +24,7 @@ class EvaRegisterPageWidgets {
     return WidgetSizedBox(
       childElement: WidgetTextField(
         shownHinttext: "Username",
-        defaultText: "Username",
+        defaultText: "",
         enabled: true,
         obscureText: false,
         onChanged: (value) {
@@ -39,7 +39,7 @@ class EvaRegisterPageWidgets {
     return WidgetSizedBox(
       childElement: WidgetTextField(
         shownHinttext: "Password",
-        defaultText: "Password",
+        defaultText: "",
         enabled: true,
         obscureText: false,
         onChanged: (value) {

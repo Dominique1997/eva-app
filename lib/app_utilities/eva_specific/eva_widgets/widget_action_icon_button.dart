@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:eva_app/app_utilities/eva_specific/eva_utilities/eva_translations.dart';
+import 'package:eva_app/app_utilities/eva_specific/eva_utilities/all_eva_utilities.dart';
 
-class WidgetActionIconButton extends StatelessWidget {
-  final IconData icon;
+class WidgetActionIconButton extends StatefulWidget {
   final String hintText;
   final Function() action;
+  final IconData icon;
 
-  const WidgetActionIconButton({
-    super.key,
-    required this.icon,
-    required this.hintText,
-    required this.action,
-  });
+  const WidgetActionIconButton(
+      {super.key,
+      required this.hintText,
+      required this.action,
+      required this.icon});
 
   @override
-  FutureBuilder<String> build(BuildContext context) {
+  State<WidgetActionIconButton> createState() => _WidgetActionIconButtonState();
+}
+
+class _WidgetActionIconButtonState extends State<WidgetActionIconButton> {
+  @override
+  Widget build(BuildContext context) {
     return FutureBuilder(
-      future: EvaTranslations.findTranslation(hintText),
+      future: EvaTranslations.findTranslation(widget.hintText),
       builder: (context, AsyncSnapshot<String?> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator();
@@ -24,12 +28,16 @@ class WidgetActionIconButton extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         } else {
           return IconButton(
-            onPressed: action,
+            onPressed: widget.action,
             tooltip: snapshot.data,
-            icon: Icon(icon),
+            icon: Icon(widget.icon),
           );
         }
       },
     );
+  }
+
+  void updateState() {
+    setState(() {});
   }
 }

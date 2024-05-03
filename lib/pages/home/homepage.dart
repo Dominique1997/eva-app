@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _evaHomePageWidget = EvaHomePageWidgets(this);
+    _evaHomePageWidget = EvaHomePageWidgets();
   }
 
   @override

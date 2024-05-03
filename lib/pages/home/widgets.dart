@@ -8,11 +8,9 @@ class EvaHomePageWidgets {
   String response = "";
   final EvaActions evaActions = EvaActions();
   late EvaApi _evaApi;
-  late State _state;
   late List _chatHistory;
 
-  EvaHomePageWidgets(State state) {
-    _state = state;
+  EvaHomePageWidgets() {
     _evaApi = EvaApi();
     _chatHistory = [];
   }
@@ -36,7 +34,7 @@ class EvaHomePageWidgets {
     Function(String) inputChanged = ((value) => question = value);
     WidgetSizedBox inputSizedBox = WidgetSizedBox(
       childElement: WidgetTextField(
-        defaultText: "Question",
+        defaultText: "",
         shownHinttext: "Question",
         enabled: true,
         obscureText: false,
@@ -55,7 +53,6 @@ class EvaHomePageWidgets {
         _evaApi.checkCommand(question).then((value) => {
               response = value,
               _chatHistory.add([question, value]),
-              _state.setState(() {})
             })
       },
     );
