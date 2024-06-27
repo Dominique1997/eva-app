@@ -1,3 +1,0 @@
-class EvaSpeaker {
-  EvaSpeaker();
-}
