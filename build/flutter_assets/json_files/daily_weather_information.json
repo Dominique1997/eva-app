@@ -1,0 +1,74 @@
+{
+  "latitude": 50.961998,
+  "longitude": 5.5099998,
+  "utc_offset_seconds": 7200,
+  "timezone": "Europe/Berlin",
+  "timezone_abbreviation": "CEST",
+  "elevation": 65,
+  "daily_units": {
+    "time": "iso8601",
+    "weather_code": "wmo code",
+    "sunrise": "iso8601",
+    "sunset": "iso8601",
+    "daylight_duration": "s",
+    "sunshine_duration": "s"
+  },
+  "daily_information": [
+    {
+      "time": "2024-07-07",
+      "weather_code": 3,
+      "sunrise": "2024-07-07T05:33",
+      "sunset": "2024-07-07T21:52",
+      "daylight_duration": 58748.88,
+      "sunshine_duration": 50822.75
+    },
+    {
+      "time": "2024-07-08",
+      "weather_code": 3,
+      "sunrise": "2024-07-08T05:34",
+      "sunset": "2024-07-08T21:51",
+      "daylight_duration": 58655.41,
+      "sunshine_duration": 33132.04
+    },
+    {
+      "time": "2024-07-09",
+      "weather_code": 53,
+      "sunrise": "2024-07-09T05:35",
+      "sunset": "2024-07-09T21:51",
+      "daylight_duration": 58557.45,
+      "sunshine_duration": 47545.52
+    },
+    {
+      "time": "2024-07-10",
+      "weather_code": 51,
+      "sunrise": "2024-07-10T05:36",
+      "sunset": "2024-07-10T21:50",
+      "daylight_duration": 58455.11,
+      "sunshine_duration": 34929.45
+    },
+    {
+      "time": "2024-07-11",
+      "weather_code": 55,
+      "sunrise": "2024-07-11T05:37",
+      "sunset": "2024-07-11T21:49",
+      "daylight_duration": 58348.4,
+      "sunshine_duration": 30847.52
+    },
+    {
+      "time": "2024-07-12",
+      "weather_code": 65,
+      "sunrise": "2024-07-12T05:38",
+      "sunset": "2024-07-12T21:48",
+      "daylight_duration": 58236.34,
+      "sunshine_duration": 47757.51
+    },
+    {
+      "time": "2024-07-13",
+      "weather_code": 53,
+      "sunrise": "2024-07-13T05:39",
+      "sunset": "2024-07-13T21:48",
+      "daylight_duration": 58118.9,
+      "sunshine_duration": 41257.37
+    }
+  ]
+}

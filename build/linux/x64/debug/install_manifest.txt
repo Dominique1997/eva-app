@@ -1,0 +1,17 @@
+/home/dominique/Documents/GitHub/eva_app/build/linux/x64/debug/bundle/eva_app
+/home/dominique/Documents/GitHub/eva_app/build/linux/x64/debug/bundle/data/icudtl.dat
+/home/dominique/Documents/GitHub/eva_app/build/linux/x64/debug/bundle/lib/libflutter_linux_gtk.so
+/home/dominique/Documents/GitHub/eva_app/build/linux/x64/debug/bundle/data/flutter_assets/shaders/ink_sparkle.frag
+/home/dominique/Documents/GitHub/eva_app/build/linux/x64/debug/bundle/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+/home/dominique/Documents/GitHub/eva_app/build/linux/x64/debug/bundle/data/flutter_assets/version.json
+/home/dominique/Documents/GitHub/eva_app/build/linux/x64/debug/bundle/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
+/home/dominique/Documents/GitHub/eva_app/build/linux/x64/debug/bundle/data/flutter_assets/packages/weather_icons/lib/fonts/weathericons-regular-webfont.ttf
+/home/dominique/Documents/GitHub/eva_app/build/linux/x64/debug/bundle/data/flutter_assets/AssetManifest.bin
+/home/dominique/Documents/GitHub/eva_app/build/linux/x64/debug/bundle/data/flutter_assets/AssetManifest.json
+/home/dominique/Documents/GitHub/eva_app/build/linux/x64/debug/bundle/data/flutter_assets/FontManifest.json
+/home/dominique/Documents/GitHub/eva_app/build/linux/x64/debug/bundle/data/flutter_assets/json_files/overview_movie_data.json
+/home/dominique/Documents/GitHub/eva_app/build/linux/x64/debug/bundle/data/flutter_assets/json_files/daily_weather_information.json
+/home/dominique/Documents/GitHub/eva_app/build/linux/x64/debug/bundle/data/flutter_assets/json_files/detailed_movie_data.json
+/home/dominique/Documents/GitHub/eva_app/build/linux/x64/debug/bundle/data/flutter_assets/json_files/hourly_weather_information.json
+/home/dominique/Documents/GitHub/eva_app/build/linux/x64/debug/bundle/data/flutter_assets/NOTICES.Z
+/home/dominique/Documents/GitHub/eva_app/build/linux/x64/debug/bundle/data/flutter_assets/kernel_blob.bin
