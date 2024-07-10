@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'app_pages/movie_information/overview.dart';
 import 'app_pages/weather_information/daily.dart';
 
 void main() {

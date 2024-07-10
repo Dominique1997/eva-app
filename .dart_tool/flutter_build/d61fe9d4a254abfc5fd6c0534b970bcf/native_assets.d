@@ -1,0 +1,1 @@
+ /home/dominique/Documents/GitHub/eva_app/.dart_tool/flutter_build/d61fe9d4a254abfc5fd6c0534b970bcf/native_assets.yaml: 

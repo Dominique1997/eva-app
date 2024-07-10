@@ -22,26 +22,28 @@ class _MovieInformationDetailedState extends State<MovieInformationDetailed> {
     String movieRuntime = movieInformation["Runtime"];
     String moviePoster = movieInformation["Poster"];
     String moviePlot = movieInformation["Plot"];
-    return Wrap(children: [
-      Column(
-        children: [
-          GestureDetector(
-            child: const Icon(Icons.backspace_rounded),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          Text(movieTitle),
-          Image.network(moviePoster),
-          Text(movieReleased),
-          Text(movieRuntime),
-          Text(movieYear),
-          Text(
-            moviePlot,
-            textAlign: TextAlign.center,
-          ),
-        ],
-      )
-    ]);
+    return Scaffold(
+      body: Center(
+        child: Column(
+          children: [
+            GestureDetector(
+              child: const Icon(Icons.backspace_rounded),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            Text(movieTitle),
+            Image.network(moviePoster),
+            Text(movieReleased),
+            Text(movieRuntime),
+            Text(movieYear),
+            Text(
+              moviePlot,
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
